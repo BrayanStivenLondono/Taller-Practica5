@@ -1,6 +1,6 @@
 package clases;
 
-import java.util.ArrayList;
+import java.util.Scanner;
 
 public class MonumentoArqueologico extends Monumento {
 	private String dimensiones;
@@ -14,10 +14,9 @@ public class MonumentoArqueologico extends Monumento {
 		this.anyosAntiguedad = 0;
 	}
 	
-	public MonumentoArqueologico(String nombre, String ubicacion, String descripcion, String material, boolean disponible, 
-			Estilo estilo, ArrayList<Visitante> listaVisitantes, String dimensiones, String civilizacion, int anyosAntiguedad,
-			Arquitecto arquitecto) {
-		super(nombre, ubicacion, descripcion, material, disponible, estilo, listaVisitantes, arquitecto);
+	public MonumentoArqueologico(String nombre, String ubicacion, String material, boolean disponible, 
+			Estilo estilo, Arquitecto arquitecto, String dimensiones, String civilizacion, int anyosAntiguedad) {
+		super(nombre, ubicacion, material, disponible, estilo, arquitecto);
 		this.dimensiones = dimensiones;
 		this.civilizacion = civilizacion;
 		this.anyosAntiguedad = anyosAntiguedad;
@@ -47,8 +46,22 @@ public class MonumentoArqueologico extends Monumento {
 	public String toString() {
 		return "MonumentoArqueologico [dimensiones=" + dimensiones + ", civilizacion=" + civilizacion
 				+ ", anyosAntiguedad=" + anyosAntiguedad + ", nombre=" + nombre + ", ubicacion=" + ubicacion
-				+ ", descripcion=" + descripcion + ", material=" + material + ", disponible=" + disponible + ", estilo="
-				+ estilo + ", listaVisitantes=" + listaVisitantes + ", arquitecto=" + arquitecto + "]";
+				+ ", material=" + material + ", disponible=" + disponible + ", estilo=" + estilo + ", arquitecto=" + arquitecto + "]";
+	}
+	
+	public void solicitudDatos () {
+		Scanner input = new Scanner (System.in);
+		
+		System.out.print("Nombre: ");
+		this.nombre = input.nextLine();
+		System.out.print("Ubicacion (Pais): ");
+		this.ubicacion = input.nextLine();
+		System.out.print("Material: ");
+		this.material = input.nextLine();
+		System.out.print("Disponible (true | false): ");
+		this.disponible = input.nextBoolean();
+		this.estilo = null;
+		this.arquitecto = null;
 	}
 	
 }

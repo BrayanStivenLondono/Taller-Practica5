@@ -15,26 +15,45 @@ public class GestorMonumentos {
 		listaEstilos = new ArrayList<Estilo>();
 	}
 	
-	public void altaMonumento (String nombre, String ubicacion, String descripcion, String material, boolean disponible,
-			Estilo estilo, ArrayList<Visitante> listaVisitantes) {
+	public void altaMonumento (String nombre, String ubicacion, String material, boolean disponible, Estilo estilo, Arquitecto arquitecto) {
 		Monumento monumento = new Monumento (nombre);
+		monumento.setNombre(nombre);
 		monumento.setUbicacion(ubicacion);
-		monumento.setDescripcion(descripcion);
 		monumento.setMaterial(material);
 		monumento.setDisponible(disponible);
 		monumento.setEstilo(estilo);
-		monumento.setListaVisitantes(listaVisitantes);
+		monumento.setArquitecto(arquitecto);
 		listaMonumentos.add(monumento);
 	}
 	
 	public void altaArquitecto (String nombre, String nacionalidad, Genero genero, String fechaNacimiento,
 			String estiloArquitectonico) {
 		Arquitecto arquitecto = new Arquitecto (nombre);
+		arquitecto.setNombre(nombre);
 		arquitecto.setNacionalidad(nacionalidad);
 		arquitecto.setGenero(genero);
 		arquitecto.setFechaNacimiento(LocalDate.parse(fechaNacimiento));
-		arquitecto.setEstiloArquitectonico(estiloArquitectonico);
 		listaArquitectos.add(arquitecto);
+	}
+	
+	public void altaMonumentoArqueologico (String nombre, String ubicacion, String material, boolean disponible, 
+			Estilo estilo, Arquitecto arquitecto, String dimensiones, String civilizacion, int anyosAntiguedad) {
+		MonumentoArqueologico monumentoArqueologico = new MonumentoArqueologico (nombre, ubicacion, 
+				material, disponible, estilo, arquitecto, dimensiones, civilizacion, anyosAntiguedad);
+		listaMonumentos.add(monumentoArqueologico);
+	}
+	
+	public void altaMonumentoHistorico (String nombre, String ubicacion, String material, boolean disponible, 
+			Estilo estilo, Arquitecto arquitecto, String estadoConservacion, int anyosAntiguedad) {
+		MonumentoHistorico monumentoHistorico = new MonumentoHistorico(nombre, ubicacion, 
+				material, disponible, estilo, arquitecto, estadoConservacion, anyosAntiguedad);
+		listaMonumentos.add(monumentoHistorico);
+	}
+	
+	public void altaSantuario (String nombre, String ubicacion, String material, boolean disponible, 
+			Estilo estilo, Arquitecto arquitecto, String religion, int anyosAntiguedad) {
+		Santuario santuario = new Santuario(nombre, ubicacion, material, disponible, estilo, arquitecto, religion, anyosAntiguedad);
+		listaMonumentos.add(santuario);
 	}
 	
 	public void altaEstilo (String nombre, String principios, String paisOrigen) {
@@ -113,9 +132,11 @@ public class GestorMonumentos {
 	}
 	
 	public void asignarEstiloMonumento (String nombreEstilo, String nombreMonumento) {
-		Monumento monumento = buscarMonumento(nombreMonumento);
-		Estilo estilo = buscarEstilo(nombreEstilo);
-		monumento.setEstilo(estilo);
+		if (buscarMonumento(nombreMonumento)!=null &&  buscarEstilo(nombreEstilo)!=null) {
+			Monumento monumento = buscarMonumento(nombreMonumento);
+			Estilo estilo = buscarEstilo(nombreEstilo);
+			monumento.setEstilo(estilo);
+		}
 	}
 	
 	public void asignarArquitectoMonumento (String nombreArquitecto, String nombreMonumento) {

@@ -1,5 +1,5 @@
 package clases;
 
 public enum Genero {
-	FEMENINO, MASCULINO
+	HOMBRE, MUJER
 }
