@@ -1,15 +1,19 @@
 package menus;
 
 import java.util.Scanner;
-import clases.GestorMonumentos;
-import menus.PeticionDeDatos;
+import clases.Monumento;
+import clases.MonumentoArqueologico;
+import clases.MonumentoHistorico;
+import clases.Santuario;
 
 public class SubMenuMonumentos {
 	public void altaMenuTipoMonumento () {
 		Scanner input2 = new Scanner (System.in);
 		
-		GestorMonumentos gestor = new GestorMonumentos();
-		PeticionDeDatos datos = new PeticionDeDatos();
+		Monumento peticionDatos = new Monumento();
+		Santuario peticionDatosSantiauro = new Santuario();
+		MonumentoArqueologico peticionDatosArqueologico = new MonumentoArqueologico();
+		MonumentoHistorico peticionDatosHistorico = new MonumentoHistorico();
 		
 		int opcionTipoMunumento = 0;
 		do {
@@ -24,18 +28,22 @@ public class SubMenuMonumentos {
 			
 			switch (opcionTipoMunumento) {
 			case 1:
-				datos.peticionDatosTipoMonumento();
+				peticionDatos.solicitudDatos();
+				break;
 			case 2:
+				peticionDatosArqueologico.solicitudDatos();
 				break;
 			case 3:
+				peticionDatosHistorico.solicitudDatos();
 				break;
 			case 4:
+				peticionDatosSantiauro.solicitudDatos();
 				break;
 			case 5:
-				System.out.println("Haz salido de Alta Monumento");
+				System.out.println("\nHaz salido de Alta Monumento");
 				break;
 			default:
-				System.out.println("Opcion incorrecta, intentalo de nuevo");
+				System.out.println("\nOpcion incorrecta, intentalo de nuevo");
 				break;
 			}
 		} while (opcionTipoMunumento!=5);

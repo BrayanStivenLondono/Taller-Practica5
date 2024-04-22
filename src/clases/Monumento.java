@@ -79,6 +79,7 @@ public class Monumento {//Superclase
 	}
 
 	public void solicitudDatos () {
+		@SuppressWarnings("resource")
 		Scanner input = new Scanner (System.in);
 		
 		GestorMonumentos gestor = new GestorMonumentos();

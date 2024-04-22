@@ -2,7 +2,7 @@ package programa;
 
 import java.util.Scanner;
 import clases.GestorMonumentos;
-import menus.MenuMomentos;
+import menus.MenuAltas;
 
 public class MenuPrincipal {
 
@@ -11,18 +11,19 @@ public class MenuPrincipal {
 		Scanner input2 = new Scanner (System.in);
 		
 		GestorMonumentos gestor = new GestorMonumentos();
-		MenuMomentos menu = new MenuMomentos();
+		MenuAltas menu = new MenuAltas();
 		
 		int opcionMenu = 0;
 		do {
-			System.out.println("\n------Menu------");
-			System.out.println("1. - Alta");
-			System.out.println("2. - Listar");
-			System.out.println("3. - Buscar");
-			System.out.println("4. - Eliminar");
-			System.out.println("5. - Extra");
-			System.out.println("6. - Extra");
-			System.out.println("7. - Salir");
+			System.out.println("\n------- Menu --------");
+			System.out.println("1. - Alta             |");
+			System.out.println("2. - Buscar           |");
+			System.out.println("3. - Listar           |");
+			System.out.println("4. - Eliminar         |");
+			System.out.println("5. - Extra            |");
+			System.out.println("6. - Extra            |");
+			System.out.println("7. - Salir            |");
+			System.out.println("______________________|");
 			System.out.print("Elige: ");
 			opcionMenu = input2.nextInt();
 			
@@ -31,6 +32,7 @@ public class MenuPrincipal {
 				menu.opcionAlta(gestor);
 				break;
 			case 2:
+				
 				break;
 			case 3:
 				break;
@@ -49,12 +51,11 @@ public class MenuPrincipal {
 			}
 		} while (opcionMenu!=7);
 		//altas
-		input2.close();
 		
-		System.out.println();
-		gestor.asignarEstiloMonumento("clasico", "coliseo");
-		gestor.asignarArquitectoMonumento("Juan", "coliseo");
 		gestor.listarMonumentos();
+		
+		input2.close();
+		System.out.println();
 		
 	}
 

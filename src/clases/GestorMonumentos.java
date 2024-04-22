@@ -26,9 +26,8 @@ public class GestorMonumentos {
 		listaMonumentos.add(monumento);
 	}
 	
-	public void altaArquitecto (String nombre, String nacionalidad, Genero genero, String fechaNacimiento,
-			String estiloArquitectonico) {
-		Arquitecto arquitecto = new Arquitecto (nombre);
+	public void altaArquitecto (String nombre, String nacionalidad, Genero genero, String fechaNacimiento) {
+		Arquitecto arquitecto = new Arquitecto ();
 		arquitecto.setNombre(nombre);
 		arquitecto.setNacionalidad(nacionalidad);
 		arquitecto.setGenero(genero);
@@ -56,9 +55,9 @@ public class GestorMonumentos {
 		listaMonumentos.add(santuario);
 	}
 	
-	public void altaEstilo (String nombre, String principios, String paisOrigen) {
+	public void altaEstilo (String nombre, String paisOrigen) {
 		if (!existeEstilo(nombre)) {
-			Estilo estilo = new Estilo (nombre, principios, paisOrigen);
+			Estilo estilo = new Estilo (nombre, paisOrigen);
 			listaEstilos.add(estilo);
 		}
 	}

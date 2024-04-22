@@ -1,19 +1,18 @@
 package clases;
 
+import java.util.Scanner;
+
 public class Estilo {
 	private String nombre;
-	private String principios;
 	private String paisOrigen;
 	
 	public Estilo() {
 		this.nombre = "";
-		this.principios = "";
 		this.paisOrigen = "";
 	}
 	
-	public Estilo(String nombre, String principios, String paisOrigen) {
+	public Estilo(String nombre, String paisOrigen) {
 		this.nombre = nombre;
-		this.principios = principios;
 		this.paisOrigen = paisOrigen;
 	}
 
@@ -24,12 +23,6 @@ public class Estilo {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getPrincipios() {
-		return principios;
-	}
-	public void setPrincipios(String principios) {
-		this.principios = principios;
-	}
 	public String getPaisOrigen() {
 		return paisOrigen;
 	}
@@ -39,7 +32,21 @@ public class Estilo {
 
 	@Override
 	public String toString() {
-		return "Estilo [nombre=" + nombre + ", principios=" + principios + ", paisOrigen=" + paisOrigen + "]";
+		return "Estilo [nombre=" + nombre +", paisOrigen=" + paisOrigen + "]";
+	}
+	
+	public void solicitudDatos () {
+		@SuppressWarnings({ "resource" })
+		Scanner input = new Scanner (System.in);
+		
+		GestorMonumentos gestor = new GestorMonumentos();
+		
+		System.out.print("\nNombre: ");
+		this.nombre = input.nextLine();
+		System.out.print("Pais de Origen: ");
+		this.paisOrigen = input.nextLine();
+		gestor.altaEstilo(nombre, paisOrigen);
+		
 	}
 	
 }

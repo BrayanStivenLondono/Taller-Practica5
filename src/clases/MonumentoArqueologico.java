@@ -50,9 +50,12 @@ public class MonumentoArqueologico extends Monumento {
 	}
 	
 	public void solicitudDatos () {
+		@SuppressWarnings("resource")
 		Scanner input = new Scanner (System.in);
 		
-		System.out.print("Nombre: ");
+		GestorMonumentos gestor = new GestorMonumentos();
+		
+		System.out.print("\nNombre: ");
 		this.nombre = input.nextLine();
 		System.out.print("Ubicacion (Pais): ");
 		this.ubicacion = input.nextLine();
@@ -62,6 +65,16 @@ public class MonumentoArqueologico extends Monumento {
 		this.disponible = input.nextBoolean();
 		this.estilo = null;
 		this.arquitecto = null;
+		System.out.print("Dimensiones: ");
+		this.dimensiones = input.nextLine();
+		System.out.println("Civilizacion: ");
+		this.civilizacion = input.nextLine();
+		input.nextLine();
+		System.out.println("Antiguedad");
+		this.anyosAntiguedad = input.nextInt();
+		
+		gestor.altaMonumentoArqueologico(nombre, ubicacion, material, disponible, estilo, arquitecto, dimensiones, civilizacion, anyosAntiguedad);
+		
 	}
 	
 }

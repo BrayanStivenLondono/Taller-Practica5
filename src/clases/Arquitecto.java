@@ -1,6 +1,7 @@
 package clases;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class Arquitecto {
 	private String nombre;
@@ -8,8 +9,8 @@ public class Arquitecto {
 	private Genero genero;
 	private LocalDate fechaNacimiento;
 	
-	public Arquitecto(String nombre) {
-		this.nombre = "";
+	public Arquitecto() {
+		
 	}
 
 	public Arquitecto(String nombre, String nacionalidad, Genero genero, LocalDate fechaNacimiento) {
@@ -52,4 +53,19 @@ public class Arquitecto {
 				+ ", genero=" + genero + ", fechaNacimiento=" + fechaNacimiento + "]";
 	}
 	
+	public void solicitudDatos() {
+		Scanner input = new Scanner (System.in);
+		
+		GestorMonumentos gestor = new GestorMonumentos();
+		
+		System.out.print("\nNombre: ");
+		this.nombre = input.nextLine();
+		System.out.print("Nacionalidad: ");
+		this.nacionalidad = input.nextLine();
+		System.out.print("Genero (Hombre | Mujer): ");
+		String Genero = input.nextLine().toUpperCase();
+		System.out.print("Fecha de Nacimiento: ");
+		String fechaNacimiento = input.nextLine();
+		gestor.altaArquitecto(nombre, nacionalidad, genero, fechaNacimiento);
+	}
 }
