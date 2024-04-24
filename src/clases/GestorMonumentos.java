@@ -8,50 +8,52 @@ public class GestorMonumentos {
 	private ArrayList<Monumento> listaMonumentos;
 	private ArrayList<Arquitecto> listaArquitectos;
 	private ArrayList<Estilo> listaEstilos;
+	private ArrayList<Visitante> listaVisitantes;
 	
 	public GestorMonumentos () {
 		listaMonumentos = new ArrayList<Monumento>();
 		listaArquitectos = new ArrayList<Arquitecto>();
 		listaEstilos = new ArrayList<Estilo>();
+		listaVisitantes = new ArrayList<Visitante>();
 	}
 	
-	public void altaMonumento (String nombre, String ubicacion, String material, boolean disponible, Estilo estilo, Arquitecto arquitecto) {
+	public void altaMonumento (String nombre, String ubicacion, String material, boolean disponible, Visitante visitante, Estilo estilo, Arquitecto arquitecto) {
 		Monumento monumento = new Monumento (nombre);
 		monumento.setNombre(nombre);
 		monumento.setUbicacion(ubicacion);
 		monumento.setMaterial(material);
 		monumento.setDisponible(disponible);
+		monumento.setVisitante(visitante);
 		monumento.setEstilo(estilo);
 		monumento.setArquitecto(arquitecto);
 		listaMonumentos.add(monumento);
 	}
 	
-	public void altaArquitecto (String nombre, String nacionalidad, Genero genero, String fechaNacimiento) {
+	public void altaArquitecto (String nombre, String fechaNacimiento, Estilo estilo) {
 		Arquitecto arquitecto = new Arquitecto ();
 		arquitecto.setNombre(nombre);
-		arquitecto.setNacionalidad(nacionalidad);
-		arquitecto.setGenero(genero);
 		arquitecto.setFechaNacimiento(LocalDate.parse(fechaNacimiento));
+		arquitecto.setEstilo(estilo);
 		listaArquitectos.add(arquitecto);
 	}
 	
 	public void altaMonumentoArqueologico (String nombre, String ubicacion, String material, boolean disponible, 
-			Estilo estilo, Arquitecto arquitecto, String dimensiones, String civilizacion, int anyosAntiguedad) {
+			Visitante visitante, Estilo estilo, Arquitecto arquitecto, String dimensiones, String civilizacion, int anyosAntiguedad) {
 		MonumentoArqueologico monumentoArqueologico = new MonumentoArqueologico (nombre, ubicacion, 
-				material, disponible, estilo, arquitecto, dimensiones, civilizacion, anyosAntiguedad);
+				material, disponible, visitante, estilo, arquitecto, dimensiones, civilizacion, anyosAntiguedad);
 		listaMonumentos.add(monumentoArqueologico);
 	}
 	
 	public void altaMonumentoHistorico (String nombre, String ubicacion, String material, boolean disponible, 
-			Estilo estilo, Arquitecto arquitecto, String estadoConservacion, int anyosAntiguedad) {
+			Visitante visitante, Estilo estilo, Arquitecto arquitecto, String estadoConservacion, int anyosAntiguedad) {
 		MonumentoHistorico monumentoHistorico = new MonumentoHistorico(nombre, ubicacion, 
-				material, disponible, estilo, arquitecto, estadoConservacion, anyosAntiguedad);
+				material, disponible, visitante, estilo, arquitecto, estadoConservacion, anyosAntiguedad);
 		listaMonumentos.add(monumentoHistorico);
 	}
 	
 	public void altaSantuario (String nombre, String ubicacion, String material, boolean disponible, 
-			Estilo estilo, Arquitecto arquitecto, String religion, int anyosAntiguedad) {
-		Santuario santuario = new Santuario(nombre, ubicacion, material, disponible, estilo, arquitecto, religion, anyosAntiguedad);
+			Visitante visitante, Estilo estilo, Arquitecto arquitecto, String religion, int anyosAntiguedad) {
+		Santuario santuario = new Santuario(nombre, ubicacion, material, disponible, visitante, estilo, arquitecto, religion, anyosAntiguedad);
 		listaMonumentos.add(santuario);
 	}
 	
@@ -150,6 +152,26 @@ public class GestorMonumentos {
 		while (iterador.hasNext()) {
 			Monumento monumento = iterador.next();
 			if (monumento.getNombre().equalsIgnoreCase(nombreMonumento)) {
+				iterador.remove();
+			}
+		}
+	}
+ 	
+ 	public void eliminarEstilo (String nombreEstilo) {
+		Iterator<Estilo> iterador = listaEstilos.iterator();
+		while (iterador.hasNext()) {
+			Estilo estilo = iterador.next();
+			if (estilo.getNombre().equalsIgnoreCase(nombreEstilo)) {
+				iterador.remove();
+			}
+		}
+	}
+ 	
+ 	public void eliminarArquitecto (String nombreArquitecto) {
+		Iterator<Arquitecto> iterador = listaArquitectos.iterator();
+		while (iterador.hasNext()) {
+			Arquitecto arquitecto = iterador.next();
+			if (arquitecto.getNombre().equalsIgnoreCase(nombreArquitecto)) {
 				iterador.remove();
 			}
 		}

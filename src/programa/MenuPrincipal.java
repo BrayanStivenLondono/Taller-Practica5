@@ -1,8 +1,9 @@
 package programa;
 
 import java.util.Scanner;
+
 import clases.GestorMonumentos;
-import menus.MenuAltas;
+import menus.SubMenus;
 
 public class MenuPrincipal {
 
@@ -11,7 +12,8 @@ public class MenuPrincipal {
 		Scanner input2 = new Scanner (System.in);
 		
 		GestorMonumentos gestor = new GestorMonumentos();
-		MenuAltas menu = new MenuAltas();
+		SubMenus menu = new SubMenus();
+		PeticionDatos.cargaDeDatos(gestor);
 		
 		int opcionMenu = 0;
 		do {
@@ -20,8 +22,8 @@ public class MenuPrincipal {
 			System.out.println("2. - Buscar           |");
 			System.out.println("3. - Listar           |");
 			System.out.println("4. - Eliminar         |");
-			System.out.println("5. - Extra            |");
-			System.out.println("6. - Extra            |");
+			System.out.println("5. - Asignar          |");
+			System.out.println("6. - Consulta         |");
 			System.out.println("7. - Salir            |");
 			System.out.println("______________________|");
 			System.out.print("Elige: ");
@@ -32,13 +34,16 @@ public class MenuPrincipal {
 				menu.opcionAlta(gestor);
 				break;
 			case 2:
-				
+				PeticionDatos.buscar(gestor);
 				break;
 			case 3:
+				PeticionDatos.listadoClases(gestor);
 				break;
 			case 4:
+				PeticionDatos.eliminar(gestor);
 				break;
 			case 5:
+				PeticionDatos.asignar(gestor);
 				break;
 			case 6:
 				break;
@@ -50,9 +55,6 @@ public class MenuPrincipal {
 				break;
 			}
 		} while (opcionMenu!=7);
-		//altas
-		
-		gestor.listarMonumentos();
 		
 		input2.close();
 		System.out.println();

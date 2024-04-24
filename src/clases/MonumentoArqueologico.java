@@ -1,7 +1,5 @@
 package clases;
 
-import java.util.Scanner;
-
 public class MonumentoArqueologico extends Monumento {
 	private String dimensiones;
 	private String civilizacion;
@@ -14,9 +12,9 @@ public class MonumentoArqueologico extends Monumento {
 		this.anyosAntiguedad = 0;
 	}
 	
-	public MonumentoArqueologico(String nombre, String ubicacion, String material, boolean disponible, 
+	public MonumentoArqueologico(String nombre, String ubicacion, String material, boolean disponible, Visitante visitante, 
 			Estilo estilo, Arquitecto arquitecto, String dimensiones, String civilizacion, int anyosAntiguedad) {
-		super(nombre, ubicacion, material, disponible, estilo, arquitecto);
+		super(nombre, ubicacion, material, disponible, visitante , estilo, arquitecto);
 		this.dimensiones = dimensiones;
 		this.civilizacion = civilizacion;
 		this.anyosAntiguedad = anyosAntiguedad;
@@ -41,40 +39,19 @@ public class MonumentoArqueologico extends Monumento {
 	public void setAnyosAntiguedad(int anyosAntiguedad) {
 		this.anyosAntiguedad = anyosAntiguedad;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "MonumentoArqueologico [dimensiones=" + dimensiones + ", civilizacion=" + civilizacion
-				+ ", anyosAntiguedad=" + anyosAntiguedad + ", nombre=" + nombre + ", ubicacion=" + ubicacion
-				+ ", material=" + material + ", disponible=" + disponible + ", estilo=" + estilo + ", arquitecto=" + arquitecto + "]";
+		return "\nMonumento Arqueologico " + 
+				"\nNombre: " + nombre + 
+				"\nUbicacion: " + ubicacion + 
+				"\nMaterial: " + material + 
+				"\nDisponible: " + disponible +
+				"\nVisitante: " + visitante +
+				"\nEstilo: " + estilo + 
+				"\nArquitecto: " + arquitecto +
+				"\nDimensiones: " + dimensiones + 
+				"\nCivilizacion: " + civilizacion + 
+				"\nAnyosAntiguedad: " + anyosAntiguedad;
 	}
-	
-	public void solicitudDatos () {
-		@SuppressWarnings("resource")
-		Scanner input = new Scanner (System.in);
-		
-		GestorMonumentos gestor = new GestorMonumentos();
-		
-		System.out.print("\nNombre: ");
-		this.nombre = input.nextLine();
-		System.out.print("Ubicacion (Pais): ");
-		this.ubicacion = input.nextLine();
-		System.out.print("Material: ");
-		this.material = input.nextLine();
-		System.out.print("Disponible (true | false): ");
-		this.disponible = input.nextBoolean();
-		this.estilo = null;
-		this.arquitecto = null;
-		System.out.print("Dimensiones: ");
-		this.dimensiones = input.nextLine();
-		System.out.println("Civilizacion: ");
-		this.civilizacion = input.nextLine();
-		input.nextLine();
-		System.out.println("Antiguedad");
-		this.anyosAntiguedad = input.nextInt();
-		
-		gestor.altaMonumentoArqueologico(nombre, ubicacion, material, disponible, estilo, arquitecto, dimensiones, civilizacion, anyosAntiguedad);
-		
-	}
-	
 }

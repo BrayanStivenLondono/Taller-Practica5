@@ -1,15 +1,13 @@
 package menus;
 
 import java.util.Scanner;
-
 import clases.GestorMonumentos;
-import menus.SubMenuMonumentos;
+import programa.PeticionDatos;
 import clases.Arquitecto;
 import clases.Estilo;
 
-public class MenuAltas {
+public class SubMenus {
 	
-	SubMenuMonumentos tipoMonumento = new SubMenuMonumentos();
 	Arquitecto arquitecto = new Arquitecto();
 	Estilo estilo = new Estilo();
 	
@@ -28,10 +26,10 @@ public class MenuAltas {
 			opcionMenuAlta = input.nextInt();
 			switch (opcionMenuAlta) {
 			case 1:
-				tipoMonumento.altaMenuTipoMonumento();
+				PeticionDatos.altaMonumento(gestor);
 				break;
 			case 2:
-				arquitecto.solicitudDatos();
+				PeticionDatos.altaEstilo(gestor);
 				break;
 			case 3:
 				estilo.solicitudDatos();
@@ -45,4 +43,5 @@ public class MenuAltas {
 			}
 		} while (opcionMenuAlta!=4);	
 	}
+	
 }

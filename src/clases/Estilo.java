@@ -32,7 +32,9 @@ public class Estilo {
 
 	@Override
 	public String toString() {
-		return "Estilo [nombre=" + nombre +", paisOrigen=" + paisOrigen + "]";
+		return "\nEstilo " + 
+				"\nNombre: " + nombre + 
+				"\nPaisOrigen: " + paisOrigen;
 	}
 	
 	public void solicitudDatos () {
@@ -46,6 +48,7 @@ public class Estilo {
 		System.out.print("Pais de Origen: ");
 		this.paisOrigen = input.nextLine();
 		gestor.altaEstilo(nombre, paisOrigen);
+		gestor.listarEstilos();
 		
 	}
 	
