@@ -1,33 +1,36 @@
 package programa;
 
-import java.util.ArrayList;
 import java.util.Scanner;
-
 import clases.Arquitecto;
 import clases.Estilo;
-import clases.Genero;
 import clases.GestorMonumentos;
-import clases.Monumento;
-import clases.MonumentoArqueologico;
-import clases.Santuario;
+import menus.SubClaseAsignar;
+import clases.MonumentoHistorico;
 
 public class PeticionDatos {
-	
-	static Scanner input = new Scanner (System.in);
-	static Scanner input2 = new Scanner (System.in);
-	
+
+	static Scanner input = new Scanner(System.in);
+	static Scanner input2 = new Scanner(System.in);
+
+	/**
+	 * Metodo que llama al GestorMonumento para hacer listar la clase seleccionada
+	 * por el usuario
+	 * 
+	 * @param gestor Llama a la clase GestorMonumentos donde estan los metodos de
+	 *               listar
+	 */
 	public static void listadoClases(GestorMonumentos gestor) {
 		int opcionListar = 0;
 		do {
-			System.out.println("\n¿Que quieres Listar?");
-			System.out.println("1. - Los Monumentos");
-			System.out.println("2. - Los Estilo");
-			System.out.println("3. - Los Aquitectos");
+			System.out.println("\n¿Que Clase Listar?");
+			System.out.println("1. - Monumentos");
+			System.out.println("2. - Estilo");
+			System.out.println("3. - Aquitectos");
 			System.out.println("4. - Todo");
 			System.out.println("5. - Salir");
 			System.out.print("Opcion: ");
 			opcionListar = input2.nextInt();
-			
+
 			switch (opcionListar) {
 			case 1:
 				gestor.listarMonumentos();
@@ -40,9 +43,9 @@ public class PeticionDatos {
 				break;
 			case 4:
 				System.out.println("\nMonumentos");
-				gestor.listarMonumentos();
-				System.out.println("\nEstilos");
-				gestor.listarMonumentos();
+				gestor.listarTodoMonumentos();
+				System.out.println("\nEstilo");
+				gestor.listarEstilos();
 				System.out.println("\nArquitectos");
 				gestor.listarArquitectos();
 				break;
@@ -50,14 +53,20 @@ public class PeticionDatos {
 				System.out.println("\nHaz salido de listar");
 				break;
 			default:
-					System.out.println("\nOpcion incorrecta");
+				System.out.println("\nOpcion incorrecta");
 				break;
 			}
-		} while (opcionListar!=5);	
+		} while (opcionListar != 5);
 	}
-	
-	
-	
+
+	/**
+	 * Metodo que llama al GestorMonumento para buscar la clase seleccionada por el
+	 * usuario
+	 * 
+	 * @param gestor Llama a la clase GestorMonumentos donde estan los metodos de
+	 *               buscar
+	 */
+
 	public static void buscar(GestorMonumentos gestor) {
 		int opcionBuscar = 0;
 		do {
@@ -68,7 +77,7 @@ public class PeticionDatos {
 			System.out.println("4. - Salir");
 			System.out.print("Opcion: ");
 			opcionBuscar = input2.nextInt();
-			
+
 			switch (opcionBuscar) {
 			case 1:
 				System.out.print("\nNombre de Monumento: ");
@@ -81,9 +90,9 @@ public class PeticionDatos {
 				System.out.println(gestor.buscarArquitecto(nombreArquitecto));
 				break;
 			case 3:
-				System.out.println("\nNombre del Estilo: ");
-				String estilo = input.nextLine();
-				System.out.println(gestor.buscarEstilo(estilo));
+				System.out.print("\nNombre del Estilo: ");
+				String nombreEstilo = input.nextLine();
+				System.out.println(gestor.buscarEstilo(nombreEstilo));
 				break;
 			case 4:
 				System.out.println("\nHaz Salido de Buscar");
@@ -92,31 +101,50 @@ public class PeticionDatos {
 				System.out.println("\nOpcion incorrecta");
 				break;
 			}
-		} while (opcionBuscar!=4);
+		} while (opcionBuscar != 4);
 	}
-	
-	
-	public static void altaEstilo (GestorMonumentos gestor) {
-		System.out.print("Nombre: ");
+
+	/**
+	 * Metodo que llama al GestorMonumento para para dar de alta un Estilo
+	 * 
+	 * @param gestor Llama a la clase GestorMonumentos donde estan los metodos de
+	 *               alta
+	 */
+
+	public static void altaEstilo(GestorMonumentos gestor) {
+		System.out.print("\nNombre: ");
 		String nombre = input.nextLine();
 		System.out.print("Pais Origen: ");
 		String paisOrigen = input.nextLine();
 		gestor.altaEstilo(nombre, paisOrigen);
+		gestor.listarEstilos();
 	}
-	
-	
-	public static void altaArquitecto (GestorMonumentos gestor) {
+
+	/**
+	 * Metodo que llama al GestorMonumento para dar de alta un Arquitecto
+	 * 
+	 * @param gestor Llama a la clase GestorMonumentos donde estan los metodos de
+	 *               alta
+	 */
+
+	public static void altaArquitecto(GestorMonumentos gestor) {
 		System.out.print("\nNombre: ");
 		String nombre = input.nextLine();
 		System.out.print("FechaNacimiento: ");
 		String fechaNacimiento = input.nextLine();
 		Estilo estilo = null;
 		gestor.altaArquitecto(nombre, fechaNacimiento, estilo);
+		gestor.listarArquitectos();
 	}
-	
 
-	
-	public static void altaMonumento (GestorMonumentos gestor) {
+	/**
+	 * Metodo que llama al GestorMonumento para dar de alta un Monumento
+	 * 
+	 * @param gestor Llama a la clase GestorMonumentos donde estan los metodos de
+	 *               alta
+	 */
+
+	public static void altaMonumento(GestorMonumentos gestor) {
 		int opcionTipoMunumento = 0;
 		do {
 			System.out.println("\n¿Que tipo de Monumento?");
@@ -127,10 +155,10 @@ public class PeticionDatos {
 			System.out.println("5. - Salir");
 			System.out.print("Opcion: ");
 			opcionTipoMunumento = input2.nextInt();
-			
+
 			switch (opcionTipoMunumento) {
 			case 1:
-				System.out.print("Nombre: ");
+				System.out.print("\nNombre: ");
 				String nombre = input.nextLine();
 				System.out.print("Ubicacion (Pais): ");
 				String ubicacion = input.nextLine();
@@ -144,19 +172,21 @@ public class PeticionDatos {
 				int anyosAntiguedad = input2.nextInt();
 				Estilo estilo = null;
 				Arquitecto arquitecto = null;
-				gestor.altaMonumento(nombre, ubicacion, material, disponible, visitantesMonumento, anyosAntiguedad ,estilo, arquitecto);
-				// nombre,  ubicacion,  material,  disponible,  cantidadVisitantes,  anyosAntiguedad, estilo,  arquitecto
-
+				gestor.altaMonumento(nombre, ubicacion, material, disponible, visitantesMonumento, anyosAntiguedad,
+						estilo, arquitecto);
+				// nombre, ubicacion, material, disponible, cantidadVisitantes, anyosAntiguedad,
+				// estilo, arquitecto
+				gestor.listarMonumentos();
 				break;
 			case 2:
-				System.out.print("Nombre: ");
+				System.out.print("\nNombre: ");
 				String nombreArqueologico = input.nextLine();
 				System.out.print("Ubicacion (Pais): ");
-				String ubicacionArqueologico  = input.nextLine();
+				String ubicacionArqueologico = input.nextLine();
 				System.out.print("Material: ");
-				String materialArqueologico  = input.nextLine();
+				String materialArqueologico = input.nextLine();
 				System.out.print("Disponible (true | false): ");
-				boolean disponibleArqueologico  = input2.nextBoolean();
+				boolean disponibleArqueologico = input2.nextBoolean();
 				System.out.print("Cantidad de Visitantes: ");
 				int visitantesArqueologico = input2.nextInt();
 				System.out.print("Anyos Antiguedad: ");
@@ -165,14 +195,19 @@ public class PeticionDatos {
 				String dimensiones = input.nextLine();
 				System.out.print("Civilizacion: ");
 				String civilizacion = input.nextLine();
-				Estilo estiloArqueologico  = null;
+				System.out.print("PeriodoHistorico: ");
+				String periodoHistorico = input.nextLine();
+				Estilo estiloArqueologico = null;
 				Arquitecto arquitectoArqueologico = null;
-				gestor.altaMonumentoArqueologico(nombreArqueologico, ubicacionArqueologico, materialArqueologico, disponibleArqueologico, 
-						visitantesArqueologico, anyosAntiguedadArqueologico , dimensiones, civilizacion, estiloArqueologico, arquitectoArqueologico);
-				////nombre,ubicacion,material, disponible, cantidadVisitantes, anyosAntiguedad, dimensiones, civilizacion, estilo, arquitecto
+				gestor.altaMonumentoArqueologico(nombreArqueologico, ubicacionArqueologico, materialArqueologico,
+						disponibleArqueologico, visitantesArqueologico, anyosAntiguedadArqueologico, dimensiones,
+						civilizacion, periodoHistorico, estiloArqueologico, arquitectoArqueologico);
+				//// nombre,ubicacion,material, disponible, cantidadVisitantes, anyosAntiguedad,
+				//// dimensiones, civilizacion, estilo, arquitecto
+				gestor.listarMonumentos();
 				break;
 			case 3:
-				System.out.print("Nombre: ");
+				System.out.print("\nNombre: ");
 				String nombreHistorico = input.nextLine();
 				System.out.print("Ubicacion (Pais): ");
 				String ubicacionHistorico = input.nextLine();
@@ -184,19 +219,25 @@ public class PeticionDatos {
 				int visitantesHistorico = input2.nextInt();
 				System.out.print("Anyos de Antiguedad: ");
 				int anyosAntiguedadHistorico = input2.nextInt();
-				System.out.print("Estado de Conservacion: ");
-				String estadoConservacion = input.nextLine();
+				String estadoConservacion = "";
+				MonumentoHistorico historico = new MonumentoHistorico();
+				historico.establecerEstadoConservacion();
+
 				System.out.print("Patrimonio de la Humanidad: ");
 				boolean patrimonioHumanidad = input2.nextBoolean();
+				System.out.print("Uso: ");
+				String uso = input.nextLine();
 				Estilo estiloHistorico = null;
 				Arquitecto arquitectoHistorico = null;
-				gestor.altaMonumentoHistorico(nombreHistorico, ubicacionHistorico, materialHistorico, disponibleHistorico, 
-						visitantesHistorico, anyosAntiguedadHistorico, estadoConservacion, patrimonioHumanidad, estiloHistorico, arquitectoHistorico);
-				//nombre,ubicacion, material,disponible,cantidadVisitantes,anyosAntiguedad,
-				//estadoConservacion,patrimonioHumanidad,estilo,arquitecto
+				gestor.altaMonumentoHistorico(nombreHistorico, ubicacionHistorico, materialHistorico,
+						disponibleHistorico, visitantesHistorico, anyosAntiguedadHistorico, estadoConservacion,
+						patrimonioHumanidad, uso, estiloHistorico, arquitectoHistorico);
+				// nombre,ubicacion, material,disponible,cantidadVisitantes,anyosAntiguedad,
+				// estadoConservacion,patrimonioHumanidad,estilo,arquitecto
+				gestor.listarMonumentos();
 				break;
 			case 4:
-				System.out.print("Nombre: ");
+				System.out.print("\nNombre: ");
 				String nombreSantuario = input.nextLine();
 				System.out.print("Ubicacion (Pais): ");
 				String ubicacionSantuario = input.nextLine();
@@ -216,10 +257,12 @@ public class PeticionDatos {
 				String tipo = input.nextLine();
 				Estilo estiloSantuario = null;
 				Arquitecto arquitectoSantuario = null;
-				gestor.altaSantuario(nombreSantuario, ubicacionSantuario, materialSantuario, disponibleSantuario, 
-						visitantesSantuario, anyosAntiguedadSantuario, religion, entorno, tipo ,estiloSantuario, arquitectoSantuario);
+				gestor.altaSantuario(nombreSantuario, ubicacionSantuario, materialSantuario, disponibleSantuario,
+						visitantesSantuario, anyosAntiguedadSantuario, religion, entorno, tipo, estiloSantuario,
+						arquitectoSantuario);
 				gestor.listarMonumentos();
-				//nombre,ubicacion,material,disponible,cantidadVisitantes,anyosAntiguedad,religion, entorno,tipo,estilo, arquitecto
+				// nombre,ubicacion,material,disponible,cantidadVisitantes,anyosAntiguedad,religion,
+				// entorno,tipo,estilo, arquitecto
 
 				break;
 			case 5:
@@ -229,10 +272,18 @@ public class PeticionDatos {
 				System.out.println("\nOpcion incorrecta, intentalo de nuevo");
 				break;
 			}
-		} while (opcionTipoMunumento!=5);
+		} while (opcionTipoMunumento != 5);
 	}
-	
-	public static void eliminar (GestorMonumentos gestor) {
+
+	/**
+	 * Metodo que llama al GestorMonumento para eliminar por la clase seleccionada
+	 * por el usuario
+	 * 
+	 * @param gestor Llama a la clase GestorMonumentos donde estan los metodos de
+	 *               eliminar
+	 */
+
+	public static void eliminar(GestorMonumentos gestor) {
 		int opcionElimnar = 0;
 		do {
 			System.out.println("\n¿Que quieres Eliminar?");
@@ -242,7 +293,7 @@ public class PeticionDatos {
 			System.out.println("4. - Salir");
 			System.out.print("Opcion: ");
 			opcionElimnar = input2.nextInt();
-			
+
 			switch (opcionElimnar) {
 			case 1:
 				gestor.listarMonumentos();
@@ -272,35 +323,36 @@ public class PeticionDatos {
 				System.out.println("\nOpcion incorrecta");
 				break;
 			}
-		} while (opcionElimnar!=4);	
+		} while (opcionElimnar != 4);
 	}
-	
-	public static void asignar (GestorMonumentos gestor) {
+
+	/**
+	 * Metodo que llama al GestorMonumento para hacer una asignacion
+	 * 
+	 * @param gestor Llama a la clase GestorMonumentos donde estan los metodos de
+	 *               asignacion
+	 */
+
+	public static void asignar(GestorMonumentos gestor) {
 		int opcionAsignar = 0;
 		do {
-			System.out.println("\n¿Que quieres Asignar a un Monumento? ");
-			System.out.println("1. - Estilo");
-			System.out.println("2. - Arquitecto");
+			System.out.println("\n¿A que Quires Asignar? ");
+			System.out.println("1. - Monumento (estilo | arquitecto)");
+			System.out.println("2. - Arquitecto (estilo)");
 			System.out.println("3. - Salir");
 			System.out.print("Opcion: ");
 			opcionAsignar = input2.nextInt();
-			
+
 			switch (opcionAsignar) {
 			case 1:
-				System.out.print("\nNombre del Estilo: ");
-				String nombreEstilo = input.nextLine();
-				System.out.print("\nNombre del Monumento");
-				String nombreMonumentoEstilo = input.nextLine();
-				gestor.asignarEstiloMonumento(nombreEstilo, nombreMonumentoEstilo);
-				gestor.listarMonumentos();
+				SubClaseAsignar.asignacionMonumento(gestor);
 				break;
 			case 2:
-				System.out.print("\nNombre del Arquitecto: ");
+				System.out.print("\nNombre Arquitecto: ");
 				String nombreArquitecto = input.nextLine();
-				System.out.print("\nNombre del Monumento");
-				String nombreMonumentoArquitecto = input.nextLine();
-				gestor.asignarArquitectoMonumento(nombreArquitecto, nombreMonumentoArquitecto);
-				gestor.listarMonumentos();
+				System.out.print("Nombre del Estilo: ");
+				String nombreEstilo = input.nextLine();
+				gestor.asignarEstiloArquitecto(nombreArquitecto, nombreEstilo);
 				break;
 			case 3:
 				System.out.println("\nHaz salido de Eliminar");
@@ -309,43 +361,64 @@ public class PeticionDatos {
 				System.out.println("\nOpcion incorrecta");
 				break;
 			}
-		} while (opcionAsignar!=3);	
+		} while (opcionAsignar != 3);
 	}
-	
-	
-	
+
+	public static void controlDeExcepciones() {
+
+	}
+
+	/**
+	 * Metodo que llama al GestorMonumento para da una carga inicial de datos
+	 * 
+	 * @param gestor Llama a la clase GestorMonumentos donde estan todas las altas
+	 */
+
 	public static void cargaDeDatos(GestorMonumentos gestor) {
-		
-		// nombre,  ubicacion,  material,  disponible,  cantidadVisitantes,  anyosAntiguedad, estilo,  arquitecto
+
+		// nombre, ubicacion, material, disponible, cantidadVisitantes, anyosAntiguedad,
+		// estilo, arquitecto
 		gestor.altaMonumento("Sagrada Familia", "Espanya", "Piedra", true, 255, 150, null, null);
-		gestor.altaMonumento("Taj Mahal", "India", "Marmol", true, 180, 300, null, null);
-		
-		//nombre,ubicacion,material, disponible, cantidadVisitantes, anyosAntiguedad, dimensiones, civilizacion, estilo, arquitecto
-		gestor.altaMonumentoArqueologico("Piramide de Giza", "Egipto", "Piedra", true, 241,4500,"138.8m de altura", "Antiguo Egipto",null, null);
-		//gestor.altaMonumentoArqueologico("Petra", "Jordania", "Roca", true, null, null, 245, null, "Nabateos", 2000);
-		gestor.altaMonumentoArqueologico("Acropolis de Atenas", "Grecia", "Marmol", true, 159 , 2500, "3 hectareas", "Antiguo Grecia",null, null);
-		
-		//nombre,ubicacion, material,disponible,cantidadVisitantes,anyosAntiguedad,estadoConservacion,patrimonioHumanidad,estilo,arquitecto
-		gestor.altaMonumentoHistorico("Castillo de Edimburgo", "Escocia", "Piedra", false, 258, 900,"Bueno", false, null, null);
-		gestor.altaMonumentoHistorico("Castillo de Praga", "Republica Checa", "Piedra", false, 147, 1100, "Bueno", false, null, null);
-		//gestor.altaMonumentoHistorico("Torre de Londres", "Ingleterra", "Piedra", true, null, 368, null, "Bueno", 950);
-		
-		
-		//nombre,ubicacion,material,disponible,cantidadVisitantes,anyosAntiguedad,religion, entorno,tipo,estilo, arquitecto
-		gestor.altaSantuario("Basilica de San Pedro", "Ciudad del Vaticano", "Marmol", true, 351,398, "Cristianismo", "Basilica", "Templo", null, null);
-		gestor.altaSantuario("Catedral de Notre Dame", "Francia", "Pedra", true, 154, 669, "Cristianismo", "Catedral", "Templo", null, null);
-		//gestor.altaSantuario("Capilla Sixtina", "Ciudad del Vaticano", "Marmol", true, null, null, null,"Cristianismo", 533);
-		
+		gestor.altaMonumento("Taj Mahal", "India", "Marmol", false, 180, 300, null, null);
+
+		// nombre,ubicacion,material, disponible, cantidadVisitantes, anyosAntiguedad,
+		// dimensiones, civilizacion, estilo, arquitecto
+		gestor.altaMonumentoArqueologico("Piramide de Giza", "Egipto", "Piedra", true, 500, 4500, "138.8m de altura",
+				"Antiguo Egipto", "Año 2560 a.C.", null, null);
+		// gestor.altaMonumentoArqueologico("Petra", "Jordania", "Roca", true, null,
+		// null, 245, null, "Nabateos", 2000);
+		gestor.altaMonumentoArqueologico("Acropolis de Atenas", "Grecia", "Marmol", true, 159, 2500, "3 hectareas",
+				"Antiguo Grecia", "Siglo V a.C.", null, null);
+
+		// nombre,ubicacion,
+		// material,disponible,cantidadVisitantes,anyosAntiguedad,estadoConservacion,patrimonioHumanidad,
+		// uso ,estilo,arquitecto
+		gestor.altaMonumentoHistorico("Castillo de Edimburgo", "Escocia", "Piedra", false, 258, 900, "Bueno", false,
+				"Sitio Turistico", null, null);
+		gestor.altaMonumentoHistorico("Castillo de Praga", "Republica Checa", "Piedra", false, 147, 1100, "Bueno",
+				false, "Sitio Turistico", null, null);
+		// gestor.altaMonumentoHistorico("Torre de Londres", "Ingleterra", "Piedra",
+		// true, null, 368, null, "Bueno", 950);
+
+		// nombre,ubicacion,material,disponible,cantidadVisitantes,anyosAntiguedad,religion,
+		// entorno,tipo,estilo, arquitecto
+		gestor.altaSantuario("Basilica de San Pedro", "Ciudad del Vaticano", "Marmol", true, 351, 398, "Cristianismo",
+				"Basilica", "Templo", null, null);
+		gestor.altaSantuario("Catedral de Notre Dame", "Francia", "Pedra", true, 154, 669, "Cristianismo", "Catedral",
+				"Templo", null, null);
+		// gestor.altaSantuario("Capilla Sixtina", "Ciudad del Vaticano", "Marmol",
+		// true, null, null, null,"Cristianismo", 533);
+
 		gestor.altaArquitecto("Antonio Gaudi", "1852-06-25", null);
 		gestor.altaArquitecto("Zaha Hadid", "1867-06-08", null);
-		//gestor.altaArquitecto("Miguel Angel","1475-03-06", null);
+		// gestor.altaArquitecto("Miguel Angel","1475-03-06", null);
 
 		gestor.altaEstilo("Renacimiento", "Italia");
 		gestor.altaEstilo("Barroco", "Italia");
 		gestor.altaEstilo("Gotico", "Francia");
 		gestor.altaEstilo("Neoclasicismo", "Italia");
-		gestor.altaEstilo("Modernismo", "Espanya");
+		// gestor.altaEstilo("Modernismo", "Espanya");
 		gestor.altaEstilo("Clasico", "Grecia");
 
-	}	
+	}
 }

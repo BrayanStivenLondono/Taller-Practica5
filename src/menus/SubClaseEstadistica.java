@@ -1,27 +1,34 @@
 package menus;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import clases.GestorMonumentos;
 
-public class SubConsulta {
-	public static void consultarAforo(GestorMonumentos gestor) {
+public class SubClaseEstadistica {
+
+	/**
+	 * Metodo que llama al GestorMonumento para hacer el tipo de consulta
+	 * seleccionada por el usuario
+	 * 
+	 * @param gestor Llama a la clase GestorMonumentos donde estan los metodos de
+	 *               las estadisticas
+	 */
+	public static void consultarEstadisticas(GestorMonumentos gestor) {
 		@SuppressWarnings("resource")
-		Scanner input = new Scanner (System.in);
-		
+		Scanner input = new Scanner(System.in);
+
 		int opcionConsultar = 0;
 		do {
 			System.out.println("\n¿Que quieres consultar?");
-			System.out.println("1. - Por Tipo");
+			System.out.println("1. - Por Tipo de Monumento");
 			System.out.println("2. - Generales");
 			System.out.println("3. - Salir");
 			System.out.print("Opcion: ");
 			opcionConsultar = input.nextInt();
-			
+
 			switch (opcionConsultar) {
 			case 1:
-				gestor.estadisticasPorTipo();
+				gestor.estadisticasPorTipoMonumento();
 				break;
 			case 2:
 				gestor.estadisticasGenerales();
@@ -33,6 +40,6 @@ public class SubConsulta {
 				System.out.println("Opcion incorrecta");
 				break;
 			}
-		} while (opcionConsultar!=3);
+		} while (opcionConsultar != 3);
 	}
 }

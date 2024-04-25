@@ -3,8 +3,8 @@ package programa;
 import java.util.Scanner;
 
 import clases.GestorMonumentos;
-import menus.SubAlta;
-import menus.SubConsulta;
+import menus.SubClaseAlta;
+import menus.SubClaseEstadistica;
 
 public class MenuPrincipal {
 
@@ -13,21 +13,21 @@ public class MenuPrincipal {
 		Scanner input2 = new Scanner (System.in);
 		
 		GestorMonumentos gestor = new GestorMonumentos();
-		SubAlta menu = new SubAlta();
+		SubClaseAlta menu = new SubClaseAlta();
 		PeticionDatos.cargaDeDatos(gestor);
 		
 		int opcionMenu = 0;
 		do {
-			System.out.println("\n------- Menu --------");
-			System.out.println("1. - Alta             |");
-			System.out.println("2. - Buscar           |");
-			System.out.println("3. - Listar           |");
-			System.out.println("4. - Eliminar         |");
-			System.out.println("5. - Asignar          |");
-			System.out.println("6. - Estadisticas     |");
-			System.out.println("7. - Salir            |");
-			System.out.println("______________________|");
-			System.out.print("Elige: ");
+			System.out.println("\n============ Menú ============");
+			System.out.println("|1. - Alta                    |");
+			System.out.println("|2. - Buscar                  |");
+			System.out.println("|3. - Listar                  |");
+			System.out.println("|4. - Eliminar                |");
+			System.out.println("|5. - Asignar                 |");
+			System.out.println("|6. - Estadisticas            |");
+			System.out.println("|7. - Salir                   |");
+			System.out.println("|_____________________________|");
+			System.out.print("Elige una opción: ");
 			opcionMenu = input2.nextInt();
 			
 			switch (opcionMenu) {
@@ -47,7 +47,7 @@ public class MenuPrincipal {
 				PeticionDatos.asignar(gestor);
 				break;
 			case 6:
-				SubConsulta.consultarAforo(gestor);
+				SubClaseEstadistica.consultarEstadisticas(gestor);
 				break;
 			case 7:
 				System.out.println("\nFin del programa");
@@ -62,5 +62,4 @@ public class MenuPrincipal {
 		System.out.println();
 		
 	}
-
 }

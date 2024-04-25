@@ -6,15 +6,23 @@ import programa.PeticionDatos;
 import clases.Arquitecto;
 import clases.Estilo;
 
-public class SubAlta {
-	
+public class SubClaseAlta {
+
 	Arquitecto arquitecto = new Arquitecto();
 	Estilo estilo = new Estilo();
-	
-	public void opcionAlta(GestorMonumentos gestor) {	
+
+	/**
+	 * Metodo que llama al GestorMonumento para dar de alta la clase seleccionada
+	 * por el usuario
+	 * 
+	 * @param gestor Llama a la clase GestorMonumentos donde estan los metodos para
+	 *               dar de alta
+	 */
+
+	public void opcionAlta(GestorMonumentos gestor) {
 		@SuppressWarnings("resource")
-		Scanner input = new Scanner (System.in);
-		
+		Scanner input = new Scanner(System.in);
+
 		int opcionMenuAlta = 0;
 		do {
 			System.out.println("\n¿Que quieres dar de Alta?");
@@ -29,7 +37,7 @@ public class SubAlta {
 				PeticionDatos.altaMonumento(gestor);
 				break;
 			case 2:
-				PeticionDatos.altaEstilo(gestor);
+				PeticionDatos.altaArquitecto(gestor);
 				break;
 			case 3:
 				PeticionDatos.altaEstilo(gestor);
@@ -41,7 +49,6 @@ public class SubAlta {
 				System.out.println("\nOpcion incorrecta");
 				break;
 			}
-		} while (opcionMenuAlta!=4);	
+		} while (opcionMenuAlta != 4);
 	}
-	
 }
