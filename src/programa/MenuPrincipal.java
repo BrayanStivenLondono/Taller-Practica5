@@ -3,7 +3,8 @@ package programa;
 import java.util.Scanner;
 
 import clases.GestorMonumentos;
-import menus.SubMenus;
+import menus.SubAlta;
+import menus.SubConsulta;
 
 public class MenuPrincipal {
 
@@ -12,7 +13,7 @@ public class MenuPrincipal {
 		Scanner input2 = new Scanner (System.in);
 		
 		GestorMonumentos gestor = new GestorMonumentos();
-		SubMenus menu = new SubMenus();
+		SubAlta menu = new SubAlta();
 		PeticionDatos.cargaDeDatos(gestor);
 		
 		int opcionMenu = 0;
@@ -23,7 +24,7 @@ public class MenuPrincipal {
 			System.out.println("3. - Listar           |");
 			System.out.println("4. - Eliminar         |");
 			System.out.println("5. - Asignar          |");
-			System.out.println("6. - Consulta         |");
+			System.out.println("6. - Estadisticas     |");
 			System.out.println("7. - Salir            |");
 			System.out.println("______________________|");
 			System.out.print("Elige: ");
@@ -46,6 +47,7 @@ public class MenuPrincipal {
 				PeticionDatos.asignar(gestor);
 				break;
 			case 6:
+				SubConsulta.consultarAforo(gestor);
 				break;
 			case 7:
 				System.out.println("\nFin del programa");

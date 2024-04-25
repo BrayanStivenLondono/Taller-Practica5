@@ -6,7 +6,7 @@ import programa.PeticionDatos;
 import clases.Arquitecto;
 import clases.Estilo;
 
-public class SubMenus {
+public class SubAlta {
 	
 	Arquitecto arquitecto = new Arquitecto();
 	Estilo estilo = new Estilo();
@@ -32,7 +32,7 @@ public class SubMenus {
 				PeticionDatos.altaEstilo(gestor);
 				break;
 			case 3:
-				estilo.solicitudDatos();
+				PeticionDatos.altaEstilo(gestor);
 				break;
 			case 4:
 				System.out.println("\nHaz salido");

@@ -5,7 +5,8 @@ public class Monumento {//Superclase
 	String ubicacion;
 	String material;
 	boolean disponible;
-	Visitante visitante;
+	int cantidadVisitantes;
+	int anyosAntiguedad;
 	Estilo estilo;
 	Arquitecto arquitecto;
 	
@@ -23,13 +24,15 @@ public class Monumento {//Superclase
 	}
 	
 	public Monumento(String nombre, String ubicacion, String material, boolean disponible,
-			Visitante visitante, Estilo estilo, Arquitecto arquitecto) {
+			int cantidadVisitantes, int anyosAntiguedad, Estilo estilo, Arquitecto arquitecto) {
 		this.nombre = nombre;
 		this.ubicacion = ubicacion;
 		this.material = material;
 		this.disponible = disponible;
-		this.visitante = visitante;
+		this.cantidadVisitantes = cantidadVisitantes;
+		this.anyosAntiguedad = anyosAntiguedad;
 		this.estilo = estilo;
+		this.arquitecto = arquitecto;
 		
 	}
 	
@@ -58,11 +61,17 @@ public class Monumento {//Superclase
 	public void setDisponible(boolean disponible) {
 		this.disponible = disponible;
 	}
-	public Visitante getVisitante() {
-		return visitante;
+	public int getCantidadVisitantes() {
+		return cantidadVisitantes;
 	}
-	public void setVisitante(Visitante visitante) {
-		this.visitante = visitante;
+	public void setCantidadVisitantes(int cantidadVisitantes) {
+		this.cantidadVisitantes = cantidadVisitantes;
+	}
+	public int getAnyosAntiguedad() {
+		return anyosAntiguedad;
+	}
+	public void setAnyosAntiguedad(int anyosAntiguedad) {
+		this.anyosAntiguedad = anyosAntiguedad;
 	}
 	public Estilo getEstilo() {
 		return estilo;
@@ -83,9 +92,10 @@ public class Monumento {//Superclase
 				"\nNombre: " + nombre + 
 				"\nUbicacion: " + ubicacion + 
 				"\nMaterial: " + material + 
-				"\nDisponible: " + disponible + 
+				"\nDisponible: " + disponible +
+				"\nVisitantes: " + cantidadVisitantes +
+				"\nAnyosAntiguedad: " + anyosAntiguedad +
 				"\nEstilo: " + estilo + 
-				"\nArquitecto: " + arquitecto +
-				"\nVisitante: " + visitante;
+				"\nArquitecto: " + arquitecto;
 	}
 }

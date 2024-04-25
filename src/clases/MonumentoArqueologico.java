@@ -3,18 +3,17 @@ package clases;
 public class MonumentoArqueologico extends Monumento {
 	private String dimensiones;
 	private String civilizacion;
-	private int anyosAntiguedad;
 	
 	public MonumentoArqueologico () {
 		super();
 		this.dimensiones = "";
 		this.civilizacion = "";
-		this.anyosAntiguedad = 0;
 	}
 	
-	public MonumentoArqueologico(String nombre, String ubicacion, String material, boolean disponible, Visitante visitante, 
-			Estilo estilo, Arquitecto arquitecto, String dimensiones, String civilizacion, int anyosAntiguedad) {
-		super(nombre, ubicacion, material, disponible, visitante , estilo, arquitecto);
+	public MonumentoArqueologico(String nombre, String ubicacion, String material, boolean disponible, 
+			int cantidadVisitantes, int anyosAntiguedad, String dimensiones, String civilizacion, 
+			Estilo estilo, Arquitecto arquitecto) {
+		super(nombre, ubicacion, material, disponible, cantidadVisitantes, anyosAntiguedad, estilo, arquitecto);
 		this.dimensiones = dimensiones;
 		this.civilizacion = civilizacion;
 		this.anyosAntiguedad = anyosAntiguedad;
@@ -33,12 +32,6 @@ public class MonumentoArqueologico extends Monumento {
 	public void setCivilizacion(String civilizacion) {
 		this.civilizacion = civilizacion;
 	}
-	public int getAnyosAntiguedad() {
-		return anyosAntiguedad;
-	}
-	public void setAnyosAntiguedad(int anyosAntiguedad) {
-		this.anyosAntiguedad = anyosAntiguedad;
-	}
 	
 	@Override
 	public String toString() {
@@ -47,11 +40,13 @@ public class MonumentoArqueologico extends Monumento {
 				"\nUbicacion: " + ubicacion + 
 				"\nMaterial: " + material + 
 				"\nDisponible: " + disponible +
-				"\nVisitante: " + visitante +
-				"\nEstilo: " + estilo + 
-				"\nArquitecto: " + arquitecto +
+				"\nVisitantes: " + cantidadVisitantes +
+				"\nAnyosAntiguedad: " + anyosAntiguedad +
 				"\nDimensiones: " + dimensiones + 
-				"\nCivilizacion: " + civilizacion + 
-				"\nAnyosAntiguedad: " + anyosAntiguedad;
+				"\nCivilizacion: " + civilizacion +
+				"\nEstilo: " + estilo + 
+				"\nArquitecto: " + arquitecto;
+				
+				
 	}
 }

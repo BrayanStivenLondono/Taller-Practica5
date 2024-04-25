@@ -1,12 +1,15 @@
 package programa;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import clases.Arquitecto;
 import clases.Estilo;
 import clases.Genero;
 import clases.GestorMonumentos;
-import clases.Visitante;
+import clases.Monumento;
+import clases.MonumentoArqueologico;
+import clases.Santuario;
 
 public class PeticionDatos {
 	
@@ -16,12 +19,13 @@ public class PeticionDatos {
 	public static void listadoClases(GestorMonumentos gestor) {
 		int opcionListar = 0;
 		do {
-			System.out.println("\n¿Que quieres Listar");
+			System.out.println("\n¿Que quieres Listar?");
 			System.out.println("1. - Los Monumentos");
 			System.out.println("2. - Los Estilo");
 			System.out.println("3. - Los Aquitectos");
 			System.out.println("4. - Todo");
 			System.out.println("5. - Salir");
+			System.out.print("Opcion: ");
 			opcionListar = input2.nextInt();
 			
 			switch (opcionListar) {
@@ -102,15 +106,12 @@ public class PeticionDatos {
 	
 	
 	public static void altaArquitecto (GestorMonumentos gestor) {
-		System.out.print("Nombre: ");
+		System.out.print("\nNombre: ");
 		String nombre = input.nextLine();
-		System.out.print("Nacionalidad: ");
-		String nacionalidad = input.nextLine();
-		System.out.print("Genero: ");
-		String genero = input.nextLine();
-		System.out.print("Fecha de Nacimiento: ");
+		System.out.print("FechaNacimiento: ");
 		String fechaNacimiento = input.nextLine();
-		gestor.altaArquitecto(nombre, nacionalidad, genero, fechaNacimiento);
+		Estilo estilo = null;
+		gestor.altaArquitecto(nombre, fechaNacimiento, estilo);
 	}
 	
 
@@ -122,11 +123,10 @@ public class PeticionDatos {
 			System.out.println("1. - Monumento (estandar)");
 			System.out.println("2. - M. Arqueologico");
 			System.out.println("3. - M. Historico");
-			System.out.println("4. - M. Santuario");
+			System.out.println("4. - Santuario");
 			System.out.println("5. - Salir");
 			System.out.print("Opcion: ");
 			opcionTipoMunumento = input2.nextInt();
-			input.nextLine();
 			
 			switch (opcionTipoMunumento) {
 			case 1:
@@ -138,10 +138,15 @@ public class PeticionDatos {
 				String material = input.nextLine();
 				System.out.print("Disponible (true | false): ");
 				boolean disponible = input2.nextBoolean();
-				Visitante visitantes = null;
+				System.out.print("Cantidad de Visitantes: ");
+				int visitantesMonumento = input2.nextInt();
+				System.out.print("Anyos Antiguedad: ");
+				int anyosAntiguedad = input2.nextInt();
 				Estilo estilo = null;
 				Arquitecto arquitecto = null;
-				gestor.altaMonumento(nombre, ubicacion, material, disponible, visitantes, estilo, arquitecto);
+				gestor.altaMonumento(nombre, ubicacion, material, disponible, visitantesMonumento, anyosAntiguedad ,estilo, arquitecto);
+				// nombre,  ubicacion,  material,  disponible,  cantidadVisitantes,  anyosAntiguedad, estilo,  arquitecto
+
 				break;
 			case 2:
 				System.out.print("Nombre: ");
@@ -152,17 +157,19 @@ public class PeticionDatos {
 				String materialArqueologico  = input.nextLine();
 				System.out.print("Disponible (true | false): ");
 				boolean disponibleArqueologico  = input2.nextBoolean();
-				Visitante visitantesArqueologico = null;
-				Estilo estiloArqueologico  = null;
-				Arquitecto arquitectoArqueologico = null;
+				System.out.print("Cantidad de Visitantes: ");
+				int visitantesArqueologico = input2.nextInt();
+				System.out.print("Anyos Antiguedad: ");
+				int anyosAntiguedadArqueologico = input2.nextInt();
 				System.out.print("Dimensiones: ");
 				String dimensiones = input.nextLine();
-				System.out.println("Civilizacion: ");
+				System.out.print("Civilizacion: ");
 				String civilizacion = input.nextLine();
-				System.out.println("Antiguedad");
-				int anyosAntiguedad = input2.nextInt();
+				Estilo estiloArqueologico  = null;
+				Arquitecto arquitectoArqueologico = null;
 				gestor.altaMonumentoArqueologico(nombreArqueologico, ubicacionArqueologico, materialArqueologico, disponibleArqueologico, 
-						visitantesArqueologico ,estiloArqueologico, arquitectoArqueologico, dimensiones, civilizacion, anyosAntiguedad);
+						visitantesArqueologico, anyosAntiguedadArqueologico , dimensiones, civilizacion, estiloArqueologico, arquitectoArqueologico);
+				////nombre,ubicacion,material, disponible, cantidadVisitantes, anyosAntiguedad, dimensiones, civilizacion, estilo, arquitecto
 				break;
 			case 3:
 				System.out.print("Nombre: ");
@@ -172,16 +179,21 @@ public class PeticionDatos {
 				System.out.print("Material: ");
 				String materialHistorico = input.nextLine();
 				System.out.print("Disponible (true | false): ");
-				boolean disponibleHistorico = input.nextBoolean();
-				Visitante visitantesHistorico = null;
-				Estilo estiloHistorico = null;
-				Arquitecto arquitectoHistorico = null;
+				boolean disponibleHistorico = input2.nextBoolean();
+				System.out.print("Cantidad de Visitantes: ");
+				int visitantesHistorico = input2.nextInt();
+				System.out.print("Anyos de Antiguedad: ");
+				int anyosAntiguedadHistorico = input2.nextInt();
 				System.out.print("Estado de Conservacion: ");
 				String estadoConservacion = input.nextLine();
-				System.out.println("Antiguedad");
-				int anyosAntiguedadHistorico = input2.nextInt();
+				System.out.print("Patrimonio de la Humanidad: ");
+				boolean patrimonioHumanidad = input2.nextBoolean();
+				Estilo estiloHistorico = null;
+				Arquitecto arquitectoHistorico = null;
 				gestor.altaMonumentoHistorico(nombreHistorico, ubicacionHistorico, materialHistorico, disponibleHistorico, 
-						visitantesHistorico, estiloHistorico, arquitectoHistorico, estadoConservacion, anyosAntiguedadHistorico);
+						visitantesHistorico, anyosAntiguedadHistorico, estadoConservacion, patrimonioHumanidad, estiloHistorico, arquitectoHistorico);
+				//nombre,ubicacion, material,disponible,cantidadVisitantes,anyosAntiguedad,
+				//estadoConservacion,patrimonioHumanidad,estilo,arquitecto
 				break;
 			case 4:
 				System.out.print("Nombre: ");
@@ -192,16 +204,23 @@ public class PeticionDatos {
 				String materialSantuario = input.nextLine();
 				System.out.print("Disponible (true | false): ");
 				boolean disponibleSantuario = input2.nextBoolean();
-				Visitante visitantesSanturio = null;
-				Estilo estiloSantuario = null;
-				Arquitecto arquitectoSantuario = null;
-				System.out.print("Religion: ");
-				String religion = input.nextLine();
+				System.out.print("Cantidad de Visitantes: ");
+				int visitantesSantuario = input2.nextInt();
 				System.out.print("AnyosAntiguedad: ");
 				int anyosAntiguedadSantuario = input2.nextInt();
+				System.out.print("Religion: ");
+				String religion = input.nextLine();
+				System.out.print("Entorno: ");
+				String entorno = input.nextLine();
+				System.out.print("Tipo: ");
+				String tipo = input.nextLine();
+				Estilo estiloSantuario = null;
+				Arquitecto arquitectoSantuario = null;
 				gestor.altaSantuario(nombreSantuario, ubicacionSantuario, materialSantuario, disponibleSantuario, 
-						visitantesSanturio ,estiloSantuario, arquitectoSantuario, religion, anyosAntiguedadSantuario);
+						visitantesSantuario, anyosAntiguedadSantuario, religion, entorno, tipo ,estiloSantuario, arquitectoSantuario);
 				gestor.listarMonumentos();
+				//nombre,ubicacion,material,disponible,cantidadVisitantes,anyosAntiguedad,religion, entorno,tipo,estilo, arquitecto
+
 				break;
 			case 5:
 				System.out.println("\nHaz salido de Alta Monumento");
@@ -296,26 +315,30 @@ public class PeticionDatos {
 	
 	
 	public static void cargaDeDatos(GestorMonumentos gestor) {
-		gestor.altaMonumento("Sagrada Familia", "Espanya", "Piedra", true, null, null, null);
-		//gestor.altaMonumento("Estatua de la Libertad", "EEUU", "Cobre", false, null, null, null);
-		//gestor.altaMonumento("Gran Muralla China", "China", "Ladrillo", true, null, null, null);
-		gestor.altaMonumento("Taj Mahal", "India", "Marmol", true, null, null, null);
 		
-		gestor.altaMonumentoArqueologico("Piramide de Giza", "Egipto", "Piedra", true, null, null, null, "138.8m de altura", "Antiguo Egipto", 4500);
-		gestor.altaMonumentoArqueologico("Petra", "Jordania", "Roca", true, null, null, null, null, "Nabateos", 2000);
-		gestor.altaMonumentoArqueologico("Acropolis de Atenas", "Grecia", "Marmol", true, null, null, null, "3 hectareas", "Antiguo Grecia", 2500);
+		// nombre,  ubicacion,  material,  disponible,  cantidadVisitantes,  anyosAntiguedad, estilo,  arquitecto
+		gestor.altaMonumento("Sagrada Familia", "Espanya", "Piedra", true, 255, 150, null, null);
+		gestor.altaMonumento("Taj Mahal", "India", "Marmol", true, 180, 300, null, null);
 		
-		gestor.altaMonumentoHistorico("Castillo de Edimburgo", "Escocia", "Piedra", false, null, null, null, "Bueno", 900);
-		gestor.altaMonumentoHistorico("Castillo de Praga", "Republica Checa", "Piedra", false, null, null, null, "Bueno", 1100);
-		//gestor.altaMonumentoHistorico("Torre de Londres", "Ingleterra", "Piedra", true, null, null, null, "Bueno", 950);
+		//nombre,ubicacion,material, disponible, cantidadVisitantes, anyosAntiguedad, dimensiones, civilizacion, estilo, arquitecto
+		gestor.altaMonumentoArqueologico("Piramide de Giza", "Egipto", "Piedra", true, 241,4500,"138.8m de altura", "Antiguo Egipto",null, null);
+		//gestor.altaMonumentoArqueologico("Petra", "Jordania", "Roca", true, null, null, 245, null, "Nabateos", 2000);
+		gestor.altaMonumentoArqueologico("Acropolis de Atenas", "Grecia", "Marmol", true, 159 , 2500, "3 hectareas", "Antiguo Grecia",null, null);
 		
-		gestor.altaSantuario("Basilica de San Pedro", "Ciudad del Vaticano", "Marmol", true, null, null, null,"Cristianismo", 398);
-		gestor.altaSantuario("Catedral de Notre Dame", "Francia", "Pedra", true, null, null, null,"Cristianismo", 669);
+		//nombre,ubicacion, material,disponible,cantidadVisitantes,anyosAntiguedad,estadoConservacion,patrimonioHumanidad,estilo,arquitecto
+		gestor.altaMonumentoHistorico("Castillo de Edimburgo", "Escocia", "Piedra", false, 258, 900,"Bueno", false, null, null);
+		gestor.altaMonumentoHistorico("Castillo de Praga", "Republica Checa", "Piedra", false, 147, 1100, "Bueno", false, null, null);
+		//gestor.altaMonumentoHistorico("Torre de Londres", "Ingleterra", "Piedra", true, null, 368, null, "Bueno", 950);
+		
+		
+		//nombre,ubicacion,material,disponible,cantidadVisitantes,anyosAntiguedad,religion, entorno,tipo,estilo, arquitecto
+		gestor.altaSantuario("Basilica de San Pedro", "Ciudad del Vaticano", "Marmol", true, 351,398, "Cristianismo", "Basilica", "Templo", null, null);
+		gestor.altaSantuario("Catedral de Notre Dame", "Francia", "Pedra", true, 154, 669, "Cristianismo", "Catedral", "Templo", null, null);
 		//gestor.altaSantuario("Capilla Sixtina", "Ciudad del Vaticano", "Marmol", true, null, null, null,"Cristianismo", 533);
 		
-		gestor.altaArquitecto("Antonio Gaudi", "Espanyol",Genero.HOMBRE, "1852-06-25");
-		gestor.altaArquitecto("Zaha Hadid", "Britanica",Genero.MUJER, "1867-06-08");
-		// gestor.altaArquitecto("Miguel Angel", "Italiana",Genero.HOMBRE, "1475-03-06");
+		gestor.altaArquitecto("Antonio Gaudi", "1852-06-25", null);
+		gestor.altaArquitecto("Zaha Hadid", "1867-06-08", null);
+		//gestor.altaArquitecto("Miguel Angel","1475-03-06", null);
 
 		gestor.altaEstilo("Renacimiento", "Italia");
 		gestor.altaEstilo("Barroco", "Italia");
@@ -323,6 +346,6 @@ public class PeticionDatos {
 		gestor.altaEstilo("Neoclasicismo", "Italia");
 		gestor.altaEstilo("Modernismo", "Espanya");
 		gestor.altaEstilo("Clasico", "Grecia");
-	}
-	
+
+	}	
 }

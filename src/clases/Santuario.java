@@ -2,22 +2,23 @@ package clases;
 
 public class Santuario extends Monumento {
 	private String religion;
-	private int anyosAntiguedad;
+	private String entorno;
+	private String tipo;
 	
 	public Santuario() {
 		super();
 		this.religion = "";
-		this.anyosAntiguedad = 0;
-		this.disponible = false;
+		this.entorno = "";
 		
 	}
 	
 	public Santuario(String nombre, String ubicacion, String material, boolean disponible, 
-			Visitante visitante, Estilo estilo, Arquitecto arquitecto, String religion, int anyosAntiguedad) {
-		super(nombre, ubicacion, material, disponible, visitante, estilo, arquitecto);
+			int cantidadVisitantes,int anyosAntiguedad, String religion, String entorno, 
+			String tipo, Estilo estilo, Arquitecto arquitecto) {
+		super(nombre, ubicacion, material, disponible, cantidadVisitantes, anyosAntiguedad, estilo, arquitecto);
 		this.religion = religion;
-		this.anyosAntiguedad = anyosAntiguedad;
-		this.disponible = disponible;
+		this.entorno = entorno;
+		this.tipo = tipo;
 	}
 
 
@@ -28,11 +29,17 @@ public class Santuario extends Monumento {
 	public void setReligion(String religion) {
 		this.religion = religion;
 	}
-	public int getAnyosAntiguedad() {
-		return anyosAntiguedad;
+	public String getEntorno() {
+		return entorno;
 	}
-	public void setAnyosAntiguedad(int anyosAntiguedad) {
-		this.anyosAntiguedad = anyosAntiguedad;
+	public void setEntorno(String entorno) {
+		this.entorno = entorno;
+	}
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	@Override
@@ -42,11 +49,15 @@ public class Santuario extends Monumento {
 				"\nUbicacion: " + ubicacion + 
 				"\nMaterial: " + material + 
 				"\nDisponible: " + disponible + 
-				"\nVisitante: " + visitante +
+				"\nVisitantes: " + cantidadVisitantes +
+				"\nAnyosAntiguedad: " + anyosAntiguedad +
+				"\nReligion: " + religion +
+				"\nEntorno: " + entorno +
+				"\nTipo: " + tipo +
 				"\nEstilo: " + estilo + 
-				"\nArquitecto: " + arquitecto +
-				"\nReligion: " + religion + 
-				"\nAnyosAntiguedad: " + anyosAntiguedad;
+				"\nArquitecto: " + arquitecto;
+			
+				
 	}
 	
 }
