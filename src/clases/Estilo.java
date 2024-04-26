@@ -3,7 +3,7 @@ package clases;
 public class Estilo {
 	private String nombre;
 	private String paisOrigen;
-
+	
 	/**
 	 * Constructor de vacio de la clase Estilo
 	 */

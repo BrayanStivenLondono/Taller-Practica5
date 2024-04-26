@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class Arquitecto {
 	private String nombre;
+	private String apellido;
 	private LocalDate fechaNacimiento;
 	Estilo estilo;
 
@@ -22,8 +23,9 @@ public class Arquitecto {
 	 * @param estilo          Estilo arquitectonico del Arquitecto
 	 * 
 	 */
-	public Arquitecto(String nombre, LocalDate fechaNacimiento, Estilo estilo) {
+	public Arquitecto(String nombre, String apellido, LocalDate fechaNacimiento, Estilo estilo) {
 		this.nombre = nombre;
+		this.apellido = apellido;
 	}
 
 	// SETTER Y GETTER
@@ -33,6 +35,14 @@ public class Arquitecto {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
 	public LocalDate getFechaNacimiento() {
@@ -50,12 +60,14 @@ public class Arquitecto {
 	public void setEstilo(Estilo estilo) {
 		this.estilo = estilo;
 	}
-
+	
 	@Override
 	public String toString() {
 		return  "\nArquitecto " + 
 				"\nNombre: " + nombre + 
+				"\nApellido: " + apellido + 
 				"\nFechaNacimiento: " + fechaNacimiento + 
 				"\nEstilo: " + estilo;
 	}
+
 }

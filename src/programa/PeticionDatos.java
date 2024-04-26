@@ -11,8 +11,6 @@ public class PeticionDatos {
 	static Scanner input = new Scanner(System.in);
 	static Scanner input2 = new Scanner(System.in);
 
-	
-
 	/**
 	 * Metodo que llama al GestorMonumento para buscar la clase seleccionada por el
 	 * usuario
@@ -24,7 +22,7 @@ public class PeticionDatos {
 	public static void buscar(GestorMonumentos gestor) {
 		int opcionBuscar = 0;
 		do {
-			System.out.println("\n¿Que quires Buscar? ");
+			System.out.println("\n¿Que Quires Buscar? ");
 			System.out.println("1. - Monumento");
 			System.out.println("2. - Arquitecto");
 			System.out.println("3. - Estilo");
@@ -37,6 +35,7 @@ public class PeticionDatos {
 				System.out.print("\nNombre de Monumento: ");
 				String nombreMonumento = input.nextLine();
 				System.out.println(gestor.buscarMonumento(nombreMonumento));
+
 				break;
 			case 2:
 				System.out.print("\nNombre del Arquitecto: ");
@@ -84,10 +83,12 @@ public class PeticionDatos {
 	public static void altaArquitecto(GestorMonumentos gestor) {
 		System.out.print("\nNombre: ");
 		String nombre = input.nextLine();
+		System.out.print("Apellido: ");
+		String apellido = input.nextLine();
 		System.out.print("FechaNacimiento: ");
 		String fechaNacimiento = input.nextLine();
 		Estilo estilo = null;
-		gestor.altaArquitecto(nombre, fechaNacimiento, estilo);
+		gestor.altaArquitecto(nombre, apellido, fechaNacimiento, estilo);
 		gestor.listarArquitectos();
 	}
 
@@ -130,7 +131,6 @@ public class PeticionDatos {
 						estilo, arquitecto);
 				// nombre, ubicacion, material, disponible, cantidadVisitantes, anyosAntiguedad,
 				// estilo, arquitecto
-				gestor.listarMonumentos();
 				break;
 			case 2:
 				System.out.print("\nNombre: ");
@@ -158,7 +158,6 @@ public class PeticionDatos {
 						civilizacion, periodoHistorico, estiloArqueologico, arquitectoArqueologico);
 				//// nombre,ubicacion,material, disponible, cantidadVisitantes, anyosAntiguedad,
 				//// dimensiones, civilizacion, estilo, arquitecto
-				gestor.listarMonumentos();
 				break;
 			case 3:
 				System.out.print("\nNombre: ");
@@ -179,13 +178,12 @@ public class PeticionDatos {
 				System.out.print("Uso: ");
 				String uso = input.nextLine();
 				Estilo estiloHistorico = null;
-				Arquitecto arquitectoHistorico = null;				
+				Arquitecto arquitectoHistorico = null;
 				gestor.altaMonumentoHistorico(nombreHistorico, ubicacionHistorico, materialHistorico,
 						disponibleHistorico, visitantesHistorico, anyosAntiguedadHistorico, estadoConservacion,
 						patrimonioHumanidad, uso, estiloHistorico, arquitectoHistorico);
 				// nombre,ubicacion, material,disponible,cantidadVisitantes,anyosAntiguedad,
 				// estadoConservacion,patrimonioHumanidad,estilo,arquitecto
-				gestor.listarMonumentos();
 				break;
 			case 4:
 				System.out.print("\nNombre: ");
@@ -211,7 +209,6 @@ public class PeticionDatos {
 				gestor.altaSantuario(nombreSantuario, ubicacionSantuario, materialSantuario, disponibleSantuario,
 						visitantesSantuario, anyosAntiguedadSantuario, religion, entorno, tipo, estiloSantuario,
 						arquitectoSantuario);
-				gestor.listarMonumentos();
 				// nombre,ubicacion,material,disponible,cantidadVisitantes,anyosAntiguedad,religion,
 				// entorno,tipo,estilo, arquitecto
 
@@ -302,20 +299,16 @@ public class PeticionDatos {
 				System.out.print("Nombre del Estilo: ");
 				String nombreEstilo = input.nextLine();
 				gestor.asignarEstiloArquitecto(nombreArquitecto, nombreEstilo);
-				gestor.listarArquitectos();
+				gestor.buscarArquitecto(nombreArquitecto);
 				break;
 			case 3:
-				System.out.println("\nHaz salido de Eliminar");
+				System.out.println("\nHaz salido de Asignar");
 				break;
 			default:
 				System.out.println("\nOpcion incorrecta");
 				break;
 			}
 		} while (opcionAsignar != 3);
-	}
-
-	public static void controlDeExcepciones() {
-
 	}
 
 	/**
@@ -359,9 +352,9 @@ public class PeticionDatos {
 		// gestor.altaSantuario("Capilla Sixtina", "Ciudad del Vaticano", "Marmol",
 		// true, null, null, null,"Cristianismo", 533);
 
-		gestor.altaArquitecto("Antonio Gaudi", "1852-06-25", null);
-		gestor.altaArquitecto("Zaha Hadid", "1867-06-08", null);
-		// gestor.altaArquitecto("Miguel Angel","1475-03-06", null);
+		gestor.altaArquitecto("Antonio", "Gaudi", "1852-06-25", null);
+		gestor.altaArquitecto("Zaha", "Hadid", "1867-06-08", null);
+		// gestor.altaArquitecto("Miguel","Angel","1475-03-06", null);
 
 		gestor.altaEstilo("Renacimiento", "Italia");
 		gestor.altaEstilo("Barroco", "Italia");

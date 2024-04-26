@@ -12,7 +12,9 @@ public class GestorMonumentos {
 	private ArrayList<Estilo> listaEstilos;
 
 	/**
-	 * Constructor de la clase GestorMonumentos
+	 * @author Brayan Stiven
+	 * 
+	 *         Constructor de la clase GestorMonumentos
 	 */
 	public GestorMonumentos() {
 		listaMonumentos = new ArrayList<Monumento>();
@@ -57,9 +59,10 @@ public class GestorMonumentos {
 	 * @param estilo          Estilo arquitectonico del Arquitecto
 	 */
 
-	public void altaArquitecto(String nombre, String fechaNacimiento, Estilo estilo) {
+	public void altaArquitecto(String nombre, String apellido, String fechaNacimiento, Estilo estilo) {
 		Arquitecto arquitecto = new Arquitecto();
 		arquitecto.setNombre(nombre);
+		arquitecto.setApellido(apellido);
 		arquitecto.setFechaNacimiento(LocalDate.parse(fechaNacimiento));
 		arquitecto.setEstilo(estilo);
 		listaArquitectos.add(arquitecto);
@@ -204,7 +207,8 @@ public class GestorMonumentos {
 					System.out.println(monumento);
 				} else if (opcionListar.equalsIgnoreCase("Historico") && monumento instanceof MonumentoHistorico) {
 					System.out.println(monumento);
-				} else if (opcionListar.equalsIgnoreCase("Arqueologico") && monumento instanceof MonumentoArqueologico) {
+				} else if (opcionListar.equalsIgnoreCase("Arqueologico")
+						&& monumento instanceof MonumentoArqueologico) {
 					System.out.println(monumento);
 				} else if (opcionListar.equalsIgnoreCase("Santuario") && monumento instanceof Santuario) {
 					System.out.println(monumento);
@@ -334,7 +338,7 @@ public class GestorMonumentos {
 			Arquitecto arquitecto = buscarArquitecto(nombreArquitecto);
 			Estilo estilo = buscarEstilo(nombreEstilo);
 			arquitecto.setEstilo(estilo);
-		}
+		} 
 	}
 
 	/**
@@ -394,35 +398,36 @@ public class GestorMonumentos {
 	 *                                        Monumento seleccionado
 	 */
 	public void estadisticasPorTipoMonumento() {
-	    int opcionConsultar = 0;
+		int opcionConsultar = 0;
 
-	    do {
-	        int totalVisitantesTipoSeleccionado = 0; // Reiniciar el total de visitantes en cada iteración
-	        int totalMonumentos = 0; // Reiniciar el total de monumentos en cada iteración
+		do {
+			int totalVisitantesTipoSeleccionado = 0;
+			int totalMonumentos = 0;
 
-	        System.out.println("\n¿Qué tipo de Monumento?");
-	        System.out.println("1. - M. Historico");
-	        System.out.println("2. - M. Arqueologico");
-	        System.out.println("3. - Santuario");
-	        System.out.println("4. - Salir");
-	        System.out.print("Opcion: ");
-	        opcionConsultar = input.nextInt();
+			System.out.println("\n¿Qué tipo de Monumento?");
+			System.out.println("1. - M. Historico");
+			System.out.println("2. - M. Arqueologico");
+			System.out.println("3. - Santuario");
+			System.out.println("4. - Salir");
+			System.out.print("Opcion: ");
+			opcionConsultar = input.nextInt();
 
-	        for (Monumento monumento : listaMonumentos) {
-	            if (monumento != null) {
-	                if ((opcionConsultar == 1 && monumento instanceof MonumentoHistorico)
-	                        || (opcionConsultar == 2 && monumento instanceof MonumentoArqueologico)
-	                        || (opcionConsultar == 3 && monumento instanceof Santuario)) {
-	                    totalVisitantesTipoSeleccionado += monumento.getCantidadVisitantes();
-	                    totalMonumentos++;
-	                } 
-	            }
-	        }
-	        
-	        double mediaVisitantes = totalVisitantesTipoSeleccionado / (double) totalMonumentos;
-	        System.out.println("\nCantidad de visitantes del tipo de monumento seleccionado: "+totalVisitantesTipoSeleccionado);
-	        System.out.println("Media de visitantes del Monumento seleccionado: "+mediaVisitantes+"%");
-	    } while (opcionConsultar != 4);
+			for (Monumento monumento : listaMonumentos) {
+				if (monumento != null) {
+					if ((opcionConsultar == 1 && monumento instanceof MonumentoHistorico)
+							|| (opcionConsultar == 2 && monumento instanceof MonumentoArqueologico)
+							|| (opcionConsultar == 3 && monumento instanceof Santuario)) {
+						totalVisitantesTipoSeleccionado += monumento.getCantidadVisitantes();
+						totalMonumentos++;
+					}
+				}
+			}
+
+			double mediaVisitantes = totalVisitantesTipoSeleccionado / (double) totalMonumentos;
+			System.out.println(
+					"\nCantidad de visitantes del tipo de Monumento seleccionado: " + totalVisitantesTipoSeleccionado);
+			System.out.println("Media de visitantes del Monumento seleccionado: " + mediaVisitantes + "%");
+		} while (opcionConsultar != 4);
 	}
 
 	/**

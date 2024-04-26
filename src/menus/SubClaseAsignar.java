@@ -17,14 +17,14 @@ public class SubClaseAsignar {
 	public static void asignacionMonumento(GestorMonumentos gestor) {
 		int opcionAsignacionMonumento = 0;
 		do {
-			System.out.println("\n¿Que le Quieres Asignar al Monumento");
+			System.out.println("\n¿Que le Quieres Asignar a Monumento ?");
 			System.out.println("1. - Estilo");
 			System.out.println("2. - Arquitecto");
 			System.out.println("3. - Salir");
 			System.out.print("Opcion: ");
 			opcionAsignacionMonumento = input.nextInt();
 			input.nextLine();
-			
+
 			switch (opcionAsignacionMonumento) {
 			case 1:
 				System.out.print("\nNombre del Estilo: ");
