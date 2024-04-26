@@ -4,6 +4,7 @@ import java.util.Scanner;
 import clases.GestorMonumentos;
 import menus.SubClaseAlta;
 import menus.SubClaseEstadistica;
+import listarjar.ListarJar;
 
 public class MenuPrincipal {
 
@@ -36,7 +37,7 @@ public class MenuPrincipal {
 				PeticionDatos.buscar(gestor);
 				break;
 			case 3:
-				PeticionDatos.listar(gestor);
+				ListarJar.listar(gestor);
 				break;
 			case 4:
 				PeticionDatos.eliminar(gestor);

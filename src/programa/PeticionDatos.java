@@ -11,52 +11,7 @@ public class PeticionDatos {
 	static Scanner input = new Scanner(System.in);
 	static Scanner input2 = new Scanner(System.in);
 
-	/**
-	 * Metodo que llama al GestorMonumento para hacer listar la clase seleccionada
-	 * por el usuario
-	 * 
-	 * @param gestor Llama a la clase GestorMonumentos donde estan los metodos de
-	 *               listar
-	 */
-	public static void listar(GestorMonumentos gestor) {
-		int opcionListar = 0;
-		do {
-			System.out.println("\n¿Que Clase Listar?");
-			System.out.println("1. - Monumentos");
-			System.out.println("2. - Estilo");
-			System.out.println("3. - Aquitectos");
-			System.out.println("4. - Todo");
-			System.out.println("5. - Salir");
-			System.out.print("Opcion: ");
-			opcionListar = input2.nextInt();
-
-			switch (opcionListar) {
-			case 1:
-				gestor.listarMonumentos();
-				break;
-			case 2:
-				gestor.listarEstilos();
-				break;
-			case 3:
-				gestor.listarArquitectos();
-				break;
-			case 4:
-				System.out.println("\nMonumentos");
-				gestor.listarTodoMonumentos();
-				System.out.println("\nEstilo");
-				gestor.listarEstilos();
-				System.out.println("\nArquitectos");
-				gestor.listarArquitectos();
-				break;
-			case 5:
-				System.out.println("\nHaz salido de listar");
-				break;
-			default:
-				System.out.println("\nOpcion incorrecta");
-				break;
-			}
-		} while (opcionListar != 5);
-	}
+	
 
 	/**
 	 * Metodo que llama al GestorMonumento para buscar la clase seleccionada por el

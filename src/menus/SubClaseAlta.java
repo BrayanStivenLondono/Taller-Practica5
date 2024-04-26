@@ -29,8 +29,7 @@ public class SubClaseAlta {
 			System.out.println("1. - Monumento");
 			System.out.println("2. - Arquitecto");
 			System.out.println("3. - Estilo");
-			System.out.println("4. - Volver");
-			System.out.println("5. - Menu Principal");
+			System.out.println("4. - Salir");
 			
 			System.out.print("Elige: ");
 			opcionMenuAlta = input.nextInt();
