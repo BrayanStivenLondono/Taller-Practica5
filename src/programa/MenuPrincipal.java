@@ -1,7 +1,6 @@
 package programa;
 
 import java.util.Scanner;
-
 import clases.GestorMonumentos;
 import menus.SubClaseAlta;
 import menus.SubClaseEstadistica;
@@ -9,13 +8,12 @@ import menus.SubClaseEstadistica;
 public class MenuPrincipal {
 
 	public static void main(String[] args) {
-		//Scanner input = new Scanner (System.in);
-		Scanner input2 = new Scanner (System.in);
-		
+		Scanner input = new Scanner(System.in);
+
 		GestorMonumentos gestor = new GestorMonumentos();
 		SubClaseAlta menu = new SubClaseAlta();
 		PeticionDatos.cargaDeDatos(gestor);
-		
+
 		int opcionMenu = 0;
 		do {
 			System.out.println("\n============ Menú ============");
@@ -28,8 +26,8 @@ public class MenuPrincipal {
 			System.out.println("|7. - Salir                   |");
 			System.out.println("|_____________________________|");
 			System.out.print("Elige una opción: ");
-			opcionMenu = input2.nextInt();
-			
+			opcionMenu = input.nextInt();
+
 			switch (opcionMenu) {
 			case 1:
 				menu.opcionAlta(gestor);
@@ -38,7 +36,7 @@ public class MenuPrincipal {
 				PeticionDatos.buscar(gestor);
 				break;
 			case 3:
-				PeticionDatos.listadoClases(gestor);
+				PeticionDatos.listar(gestor);
 				break;
 			case 4:
 				PeticionDatos.eliminar(gestor);
@@ -56,10 +54,8 @@ public class MenuPrincipal {
 				System.out.println("\nOpcion Incorrecta, intentalo de nuevo");
 				break;
 			}
-		} while (opcionMenu!=7);
-		
-		input2.close();
-		System.out.println();
-		
+		} while (opcionMenu != 7);
+
+		input.close();
 	}
 }

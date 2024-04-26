@@ -23,6 +23,8 @@ public class SubClaseAsignar {
 			System.out.println("3. - Salir");
 			System.out.print("Opcion: ");
 			opcionAsignacionMonumento = input.nextInt();
+			input.nextLine();
+			
 			switch (opcionAsignacionMonumento) {
 			case 1:
 				System.out.print("\nNombre del Estilo: ");

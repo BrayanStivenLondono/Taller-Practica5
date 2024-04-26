@@ -20,8 +20,8 @@ public class SubClaseEstadistica {
 		int opcionConsultar = 0;
 		do {
 			System.out.println("\n¿Que quieres consultar?");
-			System.out.println("1. - Por Tipo de Monumento");
-			System.out.println("2. - Generales");
+			System.out.println("1. - E. Por tipo de Monumento");
+			System.out.println("2. - E. Generales");
 			System.out.println("3. - Salir");
 			System.out.print("Opcion: ");
 			opcionConsultar = input.nextInt();

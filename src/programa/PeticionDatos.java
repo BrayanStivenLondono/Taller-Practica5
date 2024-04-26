@@ -5,7 +5,6 @@ import clases.Arquitecto;
 import clases.Estilo;
 import clases.GestorMonumentos;
 import menus.SubClaseAsignar;
-import clases.MonumentoHistorico;
 
 public class PeticionDatos {
 
@@ -19,7 +18,7 @@ public class PeticionDatos {
 	 * @param gestor Llama a la clase GestorMonumentos donde estan los metodos de
 	 *               listar
 	 */
-	public static void listadoClases(GestorMonumentos gestor) {
+	public static void listar(GestorMonumentos gestor) {
 		int opcionListar = 0;
 		do {
 			System.out.println("\n¿Que Clase Listar?");
@@ -220,15 +219,12 @@ public class PeticionDatos {
 				System.out.print("Anyos de Antiguedad: ");
 				int anyosAntiguedadHistorico = input2.nextInt();
 				String estadoConservacion = "";
-				MonumentoHistorico historico = new MonumentoHistorico();
-				historico.establecerEstadoConservacion();
-
 				System.out.print("Patrimonio de la Humanidad: ");
 				boolean patrimonioHumanidad = input2.nextBoolean();
 				System.out.print("Uso: ");
 				String uso = input.nextLine();
 				Estilo estiloHistorico = null;
-				Arquitecto arquitectoHistorico = null;
+				Arquitecto arquitectoHistorico = null;				
 				gestor.altaMonumentoHistorico(nombreHistorico, ubicacionHistorico, materialHistorico,
 						disponibleHistorico, visitantesHistorico, anyosAntiguedadHistorico, estadoConservacion,
 						patrimonioHumanidad, uso, estiloHistorico, arquitectoHistorico);
@@ -296,11 +292,9 @@ public class PeticionDatos {
 
 			switch (opcionElimnar) {
 			case 1:
-				gestor.listarMonumentos();
 				System.out.print("\nNombre del Monumento: ");
 				String nombreMonumento = input.nextLine();
 				gestor.eliminarMonumento(nombreMonumento);
-				gestor.listarMonumentos();
 				break;
 			case 2:
 				gestor.listarEstilos();
@@ -353,6 +347,7 @@ public class PeticionDatos {
 				System.out.print("Nombre del Estilo: ");
 				String nombreEstilo = input.nextLine();
 				gestor.asignarEstiloArquitecto(nombreArquitecto, nombreEstilo);
+				gestor.listarArquitectos();
 				break;
 			case 3:
 				System.out.println("\nHaz salido de Eliminar");
@@ -383,7 +378,7 @@ public class PeticionDatos {
 
 		// nombre,ubicacion,material, disponible, cantidadVisitantes, anyosAntiguedad,
 		// dimensiones, civilizacion, estilo, arquitecto
-		gestor.altaMonumentoArqueologico("Piramide de Giza", "Egipto", "Piedra", true, 500, 4500, "138.8m de altura",
+		gestor.altaMonumentoArqueologico("Piramide de Giza", "Egipto", "Piedra", true, 200, 4500, "138.8m de altura",
 				"Antiguo Egipto", "Año 2560 a.C.", null, null);
 		// gestor.altaMonumentoArqueologico("Petra", "Jordania", "Roca", true, null,
 		// null, 245, null, "Nabateos", 2000);
@@ -404,7 +399,7 @@ public class PeticionDatos {
 		// entorno,tipo,estilo, arquitecto
 		gestor.altaSantuario("Basilica de San Pedro", "Ciudad del Vaticano", "Marmol", true, 351, 398, "Cristianismo",
 				"Basilica", "Templo", null, null);
-		gestor.altaSantuario("Catedral de Notre Dame", "Francia", "Pedra", true, 154, 669, "Cristianismo", "Catedral",
+		gestor.altaSantuario("Catedral de Notre Dame", "Francia", "Pedra", true, 99, 669, "Cristianismo", "Catedral",
 				"Templo", null, null);
 		// gestor.altaSantuario("Capilla Sixtina", "Ciudad del Vaticano", "Marmol",
 		// true, null, null, null,"Cristianismo", 533);

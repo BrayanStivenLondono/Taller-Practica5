@@ -394,37 +394,35 @@ public class GestorMonumentos {
 	 *                                        Monumento seleccionado
 	 */
 	public void estadisticasPorTipoMonumento() {
-		int totalVisitantesTipoSeleccionado = 0;
-		int totalMonumentos = 0;
-		int opcionConsultar = 0;
+	    int opcionConsultar = 0;
 
-		do {
-			System.out.println("\n¿Que tipo de Monumento?");
-			System.out.println("1. - Monumento (estandar)");
-			System.out.println("2. - M. Historico");
-			System.out.println("3. - M. Arqueologico");
-			System.out.println("4. - Santuario");
-			System.out.println("5. - Salir");
-			System.out.print("Opcion: ");
-			opcionConsultar = input.nextInt();
+	    do {
+	        int totalVisitantesTipoSeleccionado = 0; // Reiniciar el total de visitantes en cada iteración
+	        int totalMonumentos = 0; // Reiniciar el total de monumentos en cada iteración
 
-			for (Monumento monumento : listaMonumentos) {
-				if (monumento != null) {
-					totalMonumentos++;
-					if ((opcionConsultar == 1 && monumento instanceof Monumento)
-							|| (opcionConsultar == 2 && monumento instanceof MonumentoHistorico)
-							|| (opcionConsultar == 3 && monumento instanceof MonumentoArqueologico)
-							|| (opcionConsultar == 4 && monumento instanceof Santuario)) {
-						totalVisitantesTipoSeleccionado += monumento.getCantidadVisitantes();
-					}
-				}
-			}
-			double mediaVisitantes = totalVisitantesTipoSeleccionado / totalMonumentos;
-			System.out.println(
-					"\nCantidad de visitantes del tipo de monumento seleccionado: " + totalVisitantesTipoSeleccionado);
-			System.out.println("Media de visitantes del Monumento: " + mediaVisitantes + "%");
-		} while (opcionConsultar != 5);
+	        System.out.println("\n¿Qué tipo de Monumento?");
+	        System.out.println("1. - M. Historico");
+	        System.out.println("2. - M. Arqueologico");
+	        System.out.println("3. - Santuario");
+	        System.out.println("4. - Salir");
+	        System.out.print("Opcion: ");
+	        opcionConsultar = input.nextInt();
 
+	        for (Monumento monumento : listaMonumentos) {
+	            if (monumento != null) {
+	                if ((opcionConsultar == 1 && monumento instanceof MonumentoHistorico)
+	                        || (opcionConsultar == 2 && monumento instanceof MonumentoArqueologico)
+	                        || (opcionConsultar == 3 && monumento instanceof Santuario)) {
+	                    totalVisitantesTipoSeleccionado += monumento.getCantidadVisitantes();
+	                    totalMonumentos++;
+	                } 
+	            }
+	        }
+	        
+	        double mediaVisitantes = totalVisitantesTipoSeleccionado / (double) totalMonumentos;
+	        System.out.println("\nCantidad de visitantes del tipo de monumento seleccionado: "+totalVisitantesTipoSeleccionado);
+	        System.out.println("Media de visitantes del Monumento seleccionado: "+mediaVisitantes+"%");
+	    } while (opcionConsultar != 4);
 	}
 
 	/**
@@ -482,11 +480,11 @@ public class GestorMonumentos {
 
 		System.out.println("\nTotal Visitantes: " + cantidadVisitante);
 		System.out.println("Total Monumentos: " + cantidadMonumento);
-
+		System.out.println();
 		System.out.println("Media Visitante de todos los Monumentos: " + mediaVisitanteTodosMonumentos + "%");
 		System.out.println("Monumento Menos Visitado: " + monumentoMenosVisitado.getNombre());
 		System.out.println("Monumento Mas Visitado: " + monumentoMasVisitado.getNombre());
-
+		System.out.println();
 		System.out.println("Monumento Mas Antiguo: " + monumentoMasAntiguo.getNombre());
 		System.out.println("Monumento Mas Actual: " + monumentoMasActual.getNombre());
 	}
